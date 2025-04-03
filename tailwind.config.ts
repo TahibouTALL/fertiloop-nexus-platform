@@ -53,7 +53,7 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				// Fertiloop custom colors
+				// Fertiloop custom colors - updated with richer, deeper tones
 				fertiloop: {
 					green: {
 						DEFAULT: '#2E6D32', // Primary green
@@ -61,24 +61,35 @@ export default {
 						dark: '#1B5E20',
 					},
 					beige: {
-						DEFAULT: '#F5F3E6',
-						light: '#FAF8F0',
-						dark: '#EAE6D4',
+						DEFAULT: '#F0EBD8', // Plus chaud et moins vif
+						light: '#F5F3E6',
+						dark: '#E6E0C5', // Plus foncé pour contraste
 					},
 					gray: {
-						DEFAULT: '#F1F1F1',
-						light: '#FFFFFF',
-						dark: '#E0E0E0',
+						DEFAULT: '#EAEAEA', // Légèrement plus sombre
+						light: '#F8F8F8', // Moins brillant
+						dark: '#D0D0D0', // Plus de contraste
 					},
 					blue: {
-						DEFAULT: '#2979FF', // Action buttons
-						light: '#448AFF',
-						dark: '#2962FF',
+						DEFAULT: '#1E6BB8', // Bleu plus profond
+						light: '#4890D8',
+						dark: '#0D47A1',
 					},
 					yellow: {
-						DEFAULT: '#FFB74D', // Warnings and notifications
-						light: '#FFC773',
-						dark: '#FFA726',
+						DEFAULT: '#F9A825', // Jaune plus chaud
+						light: '#FFB74D',
+						dark: '#F57F17',
+					},
+					// Nouvelles couleurs
+					brown: {
+						DEFAULT: '#795548',
+						light: '#A1887F',
+						dark: '#5D4037',
+					},
+					earth: {
+						DEFAULT: '#8D6E63',
+						light: '#A18276',
+						dark: '#6D4C41',
 					},
 				},
 				sidebar: {
@@ -96,6 +107,16 @@ export default {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
+			},
+			boxShadow: {
+				'soft': '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+				'card': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+				'raised': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+			},
+			backgroundImage: {
+				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+				'gradient-soft': 'linear-gradient(to bottom right, var(--tw-gradient-stops))',
+				'nature-pattern': 'url("data:image/svg+xml,%3Csvg width=\'20\' height=\'20\' viewBox=\'0 0 20 20\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M0 0h20v20H0V0zm10 17L5 12h10l-5 5z\' fill=\'%232E6D32\' fill-opacity=\'0.05\' fill-rule=\'evenodd\'/%3E%3C/svg%3E")',
 			},
 			keyframes: {
 				'accordion-down': {
@@ -125,6 +146,10 @@ export default {
 				'slide-in': {
 					'0%': { transform: 'translateX(-100%)' },
 					'100%': { transform: 'translateX(0)' }
+				},
+				'pulse-soft': {
+					'0%, 100%': { opacity: '1' },
+					'50%': { opacity: '0.7' }
 				}
 			},
 			animation: {
@@ -132,7 +157,8 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fade-in 0.3s ease-out',
 				'fade-out': 'fade-out 0.3s ease-out',
-				'slide-in': 'slide-in 0.4s ease-out'
+				'slide-in': 'slide-in 0.4s ease-out',
+				'pulse-soft': 'pulse-soft 3s ease-in-out infinite'
 			}
 		}
 	},

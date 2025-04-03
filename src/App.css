@@ -1,7 +1,8 @@
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0;
   text-align: center;
 }
 
@@ -11,11 +12,13 @@
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+  filter: drop-shadow(0 0 2em rgba(100, 180, 100, 0.6));
 }
+
 .logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+  filter: drop-shadow(0 0 2em rgba(97, 218, 251, 0.6));
 }
 
 @keyframes logo-spin {
@@ -35,8 +38,78 @@
 
 .card {
   padding: 2em;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
 }
 
 .read-the-docs {
-  color: #888;
+  color: #666;
+}
+
+/* Styles globaux supplémentaires */
+body {
+  background-image: linear-gradient(to bottom right, rgba(245, 243, 230, 0.5), rgba(255, 255, 255, 0.8));
+  background-attachment: fixed;
+}
+
+/* Animation de fade-in pour les éléments qui apparaissent */
+.fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation pour les boutons */
+button, .btn {
+  transition: all 0.3s ease;
+}
+
+button:hover, .btn:hover {
+  transform: scale(1.05);
+}
+
+/* Styles pour les liens */
+a {
+  color: #2E6D32;
+  text-decoration: none;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #1B5E20;
+}
+
+a:not(.btn):not(.nav-link)::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background-color: #1B5E20;
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-out;
+}
+
+a:not(.btn):not(.nav-link):hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }

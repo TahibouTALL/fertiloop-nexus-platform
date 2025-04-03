@@ -1,10 +1,10 @@
 
 .input-field {
-  @apply w-full rounded-md border border-gray-300 px-4 py-2 text-sm focus:border-fertiloop-green focus:outline-none focus:ring-2 focus:ring-fertiloop-green/20 transition-all duration-200;
+  @apply w-full rounded-md border border-gray-300 px-4 py-2 text-sm shadow-sm focus:border-fertiloop-green focus:outline-none focus:ring-2 focus:ring-fertiloop-green/20 transition-all duration-200 bg-white/90;
 }
 
 .btn-primary {
-  @apply bg-fertiloop-green text-white py-2 px-4 rounded-md hover:bg-fertiloop-green-dark transition-colors duration-200 font-medium;
+  @apply bg-fertiloop-green text-white py-2 px-4 rounded-md hover:bg-fertiloop-green-dark transition-all duration-200 font-medium shadow-sm transform hover:translate-y-[-2px];
 }
 
 /* Animation pour les champs validés */
@@ -18,5 +18,35 @@
 }
 
 .otp-input-field {
-  @apply h-12 w-12 text-center text-lg border border-gray-300 rounded-md focus:border-fertiloop-green focus:outline-none focus:ring-2 focus:ring-fertiloop-green/20;
+  @apply h-12 w-12 text-center text-lg border border-gray-300 rounded-md focus:border-fertiloop-green focus:outline-none focus:ring-2 focus:ring-fertiloop-green/20 shadow-sm bg-white/90;
+}
+
+/* Styles pour les labels */
+.form-label {
+  @apply block text-sm font-medium text-gray-700 mb-1;
+}
+
+/* Styles pour les groupes de formulaires */
+.form-group {
+  @apply mb-4;
+}
+
+/* Style pour les messages d'erreur */
+.error-message {
+  @apply mt-1 text-sm text-red-600;
+}
+
+/* Style pour les astuces */
+.form-tip {
+  @apply mt-1 text-xs text-gray-500 italic;
+}
+
+/* Styles pour les champs désactivés */
+.input-field:disabled {
+  @apply bg-gray-100 text-gray-500 cursor-not-allowed;
+}
+
+/* Styles pour les conteneurs de formulaires */
+.form-container {
+  @apply p-6 bg-white/80 backdrop-blur-sm rounded-xl shadow-md border border-gray-100;
 }

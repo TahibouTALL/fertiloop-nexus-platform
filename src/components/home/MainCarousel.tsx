@@ -28,7 +28,7 @@ const carouselImages: CarouselImage[] = [
     heading: "Collecte écologique",
     description: "Transformez vos déchets en ressources avec nos services de collecte",
     buttonText: "Découvrir la collecte",
-    buttonLink: "/services/waste"
+    buttonLink: "/waste-collection" // Mise à jour vers une page existante
   },
   {
     src: "/lovable-uploads/16d4f03f-85eb-4524-a622-a34579525e98.png",
@@ -36,7 +36,7 @@ const carouselImages: CarouselImage[] = [
     heading: "Engrais organique",
     description: "Un engrais 100% naturel pour des cultures plus saines et plus productives",
     buttonText: "Voir nos engrais",
-    buttonLink: "/services/fertilizer"
+    buttonLink: "/fertilizer-orders" // Mise à jour vers une page existante
   },
   {
     src: "/lovable-uploads/6e450c4c-7066-4937-a273-9c674a350b03.png",
@@ -44,7 +44,7 @@ const carouselImages: CarouselImage[] = [
     heading: "Une équipe engagée",
     description: "Rejoignez notre communauté pour un avenir plus durable",
     buttonText: "Nous rejoindre",
-    buttonLink: "/register"
+    buttonLink: "/register" // Page existante
   },
   {
     src: "/lovable-uploads/baae1282-4555-4fda-8d9b-e40ab082365a.png",
@@ -52,7 +52,7 @@ const carouselImages: CarouselImage[] = [
     heading: "Solutions naturelles",
     description: "Des produits écologiques issus de l'économie circulaire",
     buttonText: "En savoir plus",
-    buttonLink: "/services"
+    buttonLink: "/services" // Page existante
   },
   {
     src: "/lovable-uploads/32fb4369-02d3-4596-b511-268ba1cf8ca6.png",
@@ -60,7 +60,7 @@ const carouselImages: CarouselImage[] = [
     heading: "Énergie verte",
     description: "Notre biogaz disponible en différentes tailles pour tous vos besoins",
     buttonText: "Commander du biogaz",
-    buttonLink: "/services/biogas"
+    buttonLink: "/biogas-management" // Mise à jour vers une page existante
   }
 ];
 
@@ -93,7 +93,7 @@ const MainCarousel: React.FC = () => {
   }, [api]);
 
   return (
-    <div className="relative w-full bg-fertiloop-beige-light">
+    <div className="relative w-full bg-fertiloop-beige-dark">
       <Carousel
         className="w-full"
         opts={{
@@ -106,7 +106,6 @@ const MainCarousel: React.FC = () => {
           {carouselImages.map((image, index) => (
             <CarouselItem key={index} className="relative pl-0">
               <div className="relative w-full h-full">
-                {/* Removed flex and centering to prevent cropping */}
                 <div className="w-full h-full mx-auto relative">
                   <img
                     src={image.src}
@@ -114,19 +113,19 @@ const MainCarousel: React.FC = () => {
                     className="w-full h-full object-contain"
                     style={{ objectPosition: "center" }}
                   />
-                  {/* Reduced the opacity of the gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                  {/* Overlay with gradient for better text readability */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1B2B1A]/80 to-transparent" />
                   <div className="absolute bottom-0 left-0 w-full p-6 md:p-10">
                     <motion.div
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: current === index ? 1 : 0, y: current === index ? 0 : 20 }}
                       transition={{ duration: 0.5 }}
                     >
-                      <h2 className="text-2xl md:text-4xl font-bold text-white mb-2">{image.heading}</h2>
-                      <p className="text-white/80 text-lg md:text-xl mb-6 max-w-xl">{image.description}</p>
+                      <h2 className="text-2xl md:text-4xl font-bold text-white mb-2 text-shadow">{image.heading}</h2>
+                      <p className="text-white text-lg md:text-xl mb-6 max-w-xl text-shadow-sm">{image.description}</p>
                       {image.buttonText && image.buttonLink && (
                         <Link to={image.buttonLink}>
-                          <Button className="bg-fertiloop-green hover:bg-fertiloop-green-dark text-white">
+                          <Button className="bg-fertiloop-green-dark hover:bg-fertiloop-green text-white shadow-md transition-all duration-300 transform hover:scale-105">
                             {image.buttonText}
                             <ArrowRight className="ml-2 h-4 w-4" />
                           </Button>
@@ -145,7 +144,7 @@ const MainCarousel: React.FC = () => {
             <button
               key={index}
               className={`h-2 rounded-full transition-all ${
-                index === current ? "w-8 bg-white" : "w-2 bg-white/50"
+                index === current ? "w-8 bg-fertiloop-green-light" : "w-2 bg-white/60"
               }`}
               onClick={() => api?.scrollTo(index)}
               aria-label={`Go to slide ${index + 1}`}
@@ -154,8 +153,8 @@ const MainCarousel: React.FC = () => {
         </div>
 
         <div className="hidden md:block">
-          <CarouselPrevious className="absolute left-4 top-1/2 h-10 w-10 -translate-y-1/2 bg-black/30 hover:bg-black/50 border-none text-white" />
-          <CarouselNext className="absolute right-4 top-1/2 h-10 w-10 -translate-y-1/2 bg-black/30 hover:bg-black/50 border-none text-white" />
+          <CarouselPrevious className="absolute left-4 top-1/2 h-10 w-10 -translate-y-1/2 bg-black/40 hover:bg-fertiloop-green-dark border-none text-white shadow-lg" />
+          <CarouselNext className="absolute right-4 top-1/2 h-10 w-10 -translate-y-1/2 bg-black/40 hover:bg-fertiloop-green-dark border-none text-white shadow-lg" />
         </div>
       </Carousel>
     </div>
