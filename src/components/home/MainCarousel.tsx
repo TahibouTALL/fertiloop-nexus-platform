@@ -84,7 +84,7 @@ const MainCarousel: React.FC = () => {
       } else {
         api.scrollTo(0);
       }
-    }, 5000);
+    }, 3000); // Réduction du temps d'interval de 5000 à 3000 ms
 
     return () => {
       api.off("select", handleSelect);

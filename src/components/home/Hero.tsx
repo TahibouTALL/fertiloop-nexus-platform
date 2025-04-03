@@ -12,7 +12,7 @@ const Hero = () => {
           <div className="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left">
             <div className="flex items-center justify-center lg:justify-start">
               <img 
-                src="/lovable-uploads/4eb1fc11-5e7f-4cdd-a755-9dffd17d3b51.png" 
+                src="/lovable-uploads/feb1c2b3-ac7e-4e36-8d99-075a7106d0fb.png" 
                 alt="Fertiloop Logo" 
                 className="h-16 w-16"
               />

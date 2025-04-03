@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -56,7 +55,7 @@ const Navbar = () => {
               >
                 <img
                   className="h-10 w-10 mr-2"
-                  src="/lovable-uploads/4eb1fc11-5e7f-4cdd-a755-9dffd17d3b51.png"
+                  src="/lovable-uploads/feb1c2b3-ac7e-4e36-8d99-075a7106d0fb.png"
                   alt="Fertiloop Logo"
                 />
                 <div className="flex flex-col">
