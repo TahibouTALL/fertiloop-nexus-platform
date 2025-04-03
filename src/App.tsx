@@ -24,6 +24,11 @@ import DemoNotifications from "./pages/DemoNotifications";
 import Profile from "./pages/Profile";
 import Settings from "./pages/Settings";
 import Logout from "./pages/Logout";
+// Added routes for missing pages
+import Services from "./pages/Services";
+import FertilizerGuides from "./pages/FertilizerGuides";
+import CollectionTracking from "./pages/CollectionTracking";
+import BiodigesterStatus from "./pages/BiodigesterStatus";
 
 const queryClient = new QueryClient();
 
@@ -40,6 +45,7 @@ const App = () => (
               <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
               <Route path="/access-denied" element={<AccessDenied />} />
+              <Route path="/services" element={<Services />} />
               
               {/* Protected Routes */}
               <Route path="/dashboard" element={
@@ -97,6 +103,23 @@ const App = () => (
               <Route path="/logout" element={
                 <ProtectedRoute>
                   <Logout />
+                </ProtectedRoute>
+              } />
+              
+              {/* Added new routes */}
+              <Route path="/fertilizer-guides" element={
+                <ProtectedRoute allowedRoles={["farmer", "admin"]}>
+                  <FertilizerGuides />
+                </ProtectedRoute>
+              } />
+              <Route path="/collection-tracking" element={
+                <ProtectedRoute allowedRoles={["household", "restaurant", "hotel", "admin"]}>
+                  <CollectionTracking />
+                </ProtectedRoute>
+              } />
+              <Route path="/biodigester-status" element={
+                <ProtectedRoute allowedRoles={["household", "restaurant", "hotel", "admin"]}>
+                  <BiodigesterStatus />
                 </ProtectedRoute>
               } />
 
