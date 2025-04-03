@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'sonner';
@@ -28,6 +27,7 @@ const RegistrationForm = () => {
     lastName: false,
     firstName: false,
     phone: false,
+    email: false,
     location: false,
     password: false,
     confirmPassword: false,
@@ -91,7 +91,7 @@ const RegistrationForm = () => {
     setIsSubmitting(true);
     
     // Form validation
-    if (!formData.lastName || !formData.firstName || !formData.phone || !formData.location || !formData.password) {
+    if (!formData.lastName || !formData.firstName || !formData.phone || !formData.location || !formData.password || !formData.email) {
       toast.error("Veuillez remplir tous les champs obligatoires");
       setIsSubmitting(false);
       return;
@@ -99,6 +99,12 @@ const RegistrationForm = () => {
 
     if (formData.phone.length < 8) {
       toast.error("Le numéro de téléphone est trop court");
+      setIsSubmitting(false);
+      return;
+    }
+    
+    if (!formData.email || !/\S+@\S+\.\S+/.test(formData.email)) {
+      toast.error("Veuillez entrer une adresse email valide");
       setIsSubmitting(false);
       return;
     }
@@ -120,7 +126,7 @@ const RegistrationForm = () => {
       const userData = {
         name: `${formData.firstName} ${formData.lastName}`,
         phone: formData.phone,
-        email: formData.email || undefined,
+        email: formData.email,
         location: formData.location,
         role: formData.userType,
       };
@@ -268,6 +274,35 @@ const RegistrationForm = () => {
         <div>
           <div className="relative">
             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+              <Mail className="h-5 w-5 text-gray-400" />
+            </div>
+            <motion.input
+              type="email"
+              name="email"
+              id="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Email"
+              className={`input-field pl-10 ${fieldValidation.email ? "border-fertiloop-green" : ""}`}
+              required
+              whileFocus={{ scale: 1.01 }}
+              transition={{ duration: 0.2 }}
+            />
+            {fieldValidation.email && (
+              <motion.span 
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-fertiloop-green"
+              >
+                <Check size={16} />
+              </motion.span>
+            )}
+          </div>
+        </div>
+        
+        <div>
+          <div className="relative">
+            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
               <Phone className="h-5 w-5 text-gray-400" />
             </div>
             <motion.input
@@ -291,25 +326,6 @@ const RegistrationForm = () => {
                 <Check size={16} />
               </motion.span>
             )}
-          </div>
-        </div>
-        
-        <div>
-          <div className="relative">
-            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-              <Mail className="h-5 w-5 text-gray-400" />
-            </div>
-            <motion.input
-              type="email"
-              name="email"
-              id="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="Email (facultatif)"
-              className="input-field pl-10"
-              whileFocus={{ scale: 1.01 }}
-              transition={{ duration: 0.2 }}
-            />
           </div>
         </div>
         

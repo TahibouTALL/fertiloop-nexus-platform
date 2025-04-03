@@ -23,7 +23,7 @@ interface AuthContextType {
   user: User | null;
   isAuthenticated: boolean;
   isLoading: boolean;
-  signIn: (phone: string, password: string) => Promise<void>;
+  signIn: (email: string, password: string) => Promise<void>;
   signUp: (userData: Omit<User, "id">, password: string) => Promise<void>;
   signOut: () => Promise<void>;
   hasRole: (roles: UserRole | UserRole[]) => boolean;
@@ -120,15 +120,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     };
   }, []);
 
-  const signIn = async (phone: string, password: string) => {
+  const signIn = async (email: string, password: string) => {
     try {
       setIsLoading(true);
       
-      // Temporary fix: Check if phone has a country code
-      const formattedPhone = phone.startsWith('+') ? phone : `+221${phone}`;
-      
       const { data, error } = await supabase.auth.signInWithPassword({
-        phone: formattedPhone,
+        email,
         password,
       });
 
@@ -164,19 +161,20 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     try {
       setIsLoading(true);
       
-      // Temporary fix: Check if phone has a country code
-      const formattedPhone = userData.phone.startsWith('+') ? userData.phone : `+221${userData.phone}`;
+      // Make sure email is provided and use it for authentication
+      if (!userData.email) {
+        throw new Error("L'email est requis pour l'inscription");
+      }
       
-      // Create the user in Supabase auth
+      // Create the user in Supabase auth using email
       const { data, error } = await supabase.auth.signUp({
-        phone: formattedPhone,
+        email: userData.email,
         password,
         options: {
           data: {
             name: userData.name,
-            phone: formattedPhone,
+            phone: userData.phone,
             role: userData.role,
-            email: userData.email || null,
             location: userData.location || null
           }
         }
