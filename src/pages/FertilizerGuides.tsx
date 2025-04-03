@@ -1,7 +1,7 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Leaf, Calendar, Plant, CloudRain } from "lucide-react";
+import { ArrowLeft, Leaf, Calendar, Sprout, CloudRain } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
@@ -75,7 +75,7 @@ const FertilizerGuides = () => {
 
                 <div className="bg-white p-6 rounded-lg shadow-sm">
                   <div className="flex items-center mb-3">
-                    <Plant className="h-6 w-6 text-fertiloop-green mr-2" />
+                    <Sprout className="h-6 w-6 text-fertiloop-green mr-2" />
                     <h3 className="text-lg font-medium text-gray-900">Dosage recommandé</h3>
                   </div>
                   <p className="text-gray-600 mb-4">
