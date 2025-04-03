@@ -1,11 +1,14 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, User, Phone, Mail, Briefcase } from "lucide-react";
+import { ArrowLeft, User, Phone, Briefcase } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 const Profile = () => {
   const { user } = useAuth();
+
+  console.log("User data in profile:", user); // Ajout d'un log pour déboguer
 
   // Function to get user initials
   const getUserInitials = () => {
@@ -27,6 +30,10 @@ const Profile = () => {
         return "Ménage";
       case "logistics":
         return "Logistique";
+      case "restaurant":
+        return "Restaurant";
+      case "hotel":
+        return "Hôtel";
       default:
         return role;
     }
@@ -46,13 +53,11 @@ const Profile = () => {
       <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="bg-white rounded-xl shadow-sm p-6">
           <div className="flex items-center mb-6">
-            <div className="h-16 w-16 rounded-full bg-fertiloop-green text-white flex items-center justify-center mr-4">
-              {user?.name ? (
-                <span className="text-xl font-semibold">{getUserInitials()}</span>
-              ) : (
-                <User className="h-8 w-8" />
-              )}
-            </div>
+            <Avatar className="h-16 w-16 bg-fertiloop-green text-white mr-4">
+              <AvatarFallback className="bg-fertiloop-green text-xl font-semibold">
+                {getUserInitials()}
+              </AvatarFallback>
+            </Avatar>
             <div>
               <h2 className="text-xl font-semibold text-gray-900">{user?.name || "Utilisateur"}</h2>
               <p className="text-gray-600 flex items-center">
