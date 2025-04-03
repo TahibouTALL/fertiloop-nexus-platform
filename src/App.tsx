@@ -18,6 +18,7 @@ import PagePayments from "./pages/PagePayments";
 import WasteCollection from "./pages/WasteCollection";
 import AccessDenied from "./pages/AccessDenied";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
+import Logistics from "./pages/Logistics";
 
 const queryClient = new QueryClient();
 
@@ -59,6 +60,11 @@ const App = () => (
               <Route path="/waste-collection" element={
                 <ProtectedRoute allowedRoles={["household", "logistics", "admin"]}>
                   <WasteCollection />
+                </ProtectedRoute>
+              } />
+              <Route path="/logistics" element={
+                <ProtectedRoute allowedRoles={["logistics", "admin"]}>
+                  <Logistics />
                 </ProtectedRoute>
               } />
               <Route path="/support" element={
