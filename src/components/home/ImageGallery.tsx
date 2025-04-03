@@ -124,11 +124,13 @@ const ImageGallery: React.FC = () => {
                         className="relative overflow-hidden rounded-lg cursor-pointer group h-64"
                         onClick={() => setSelectedImage(image)}
                       >
-                        <img
-                          src={image.src}
-                          alt={image.alt}
-                          className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-110"
-                        />
+                        <div className="w-full h-full flex items-center justify-center bg-fertiloop-gray-light/50">
+                          <img
+                            src={image.src}
+                            alt={image.alt}
+                            className="object-contain w-full h-full transition-transform duration-300 group-hover:scale-105 max-h-60 p-2"
+                          />
+                        </div>
                         <div className="absolute inset-0 bg-black bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
                           <div className="p-4 w-full bg-gradient-to-t from-black to-transparent">
                             <p className="text-white font-medium text-sm">{image.alt}</p>
@@ -138,11 +140,11 @@ const ImageGallery: React.FC = () => {
                     </DialogTrigger>
                     <DialogContent className="sm:max-w-[800px] p-0 bg-transparent border-none">
                       <div className="bg-white rounded-lg overflow-hidden">
-                        <div className="relative aspect-video">
+                        <div className="relative p-4 flex justify-center items-center bg-fertiloop-gray-light/30">
                           <img
                             src={image.src}
                             alt={image.alt}
-                            className="object-contain w-full h-full"
+                            className="object-contain max-w-full max-h-[70vh]"
                           />
                         </div>
                         <div className="p-4 bg-white">

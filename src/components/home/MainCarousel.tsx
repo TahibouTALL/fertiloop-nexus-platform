@@ -28,7 +28,7 @@ const carouselImages: CarouselImage[] = [
     heading: "Collecte écologique",
     description: "Transformez vos déchets en ressources avec nos services de collecte",
     buttonText: "Découvrir la collecte",
-    buttonLink: "/waste-collection" // Mise à jour vers une page existante
+    buttonLink: "/waste-collection" 
   },
   {
     src: "/lovable-uploads/16d4f03f-85eb-4524-a622-a34579525e98.png",
@@ -36,7 +36,7 @@ const carouselImages: CarouselImage[] = [
     heading: "Engrais organique",
     description: "Un engrais 100% naturel pour des cultures plus saines et plus productives",
     buttonText: "Voir nos engrais",
-    buttonLink: "/fertilizer-orders" // Mise à jour vers une page existante
+    buttonLink: "/fertilizer-orders" 
   },
   {
     src: "/lovable-uploads/6e450c4c-7066-4937-a273-9c674a350b03.png",
@@ -44,7 +44,7 @@ const carouselImages: CarouselImage[] = [
     heading: "Une équipe engagée",
     description: "Rejoignez notre communauté pour un avenir plus durable",
     buttonText: "Nous rejoindre",
-    buttonLink: "/register" // Page existante
+    buttonLink: "/register" 
   },
   {
     src: "/lovable-uploads/baae1282-4555-4fda-8d9b-e40ab082365a.png",
@@ -52,7 +52,7 @@ const carouselImages: CarouselImage[] = [
     heading: "Solutions naturelles",
     description: "Des produits écologiques issus de l'économie circulaire",
     buttonText: "En savoir plus",
-    buttonLink: "/services" // Page existante
+    buttonLink: "/services" 
   },
   {
     src: "/lovable-uploads/32fb4369-02d3-4596-b511-268ba1cf8ca6.png",
@@ -60,7 +60,7 @@ const carouselImages: CarouselImage[] = [
     heading: "Énergie verte",
     description: "Notre biogaz disponible en différentes tailles pour tous vos besoins",
     buttonText: "Commander du biogaz",
-    buttonLink: "/biogas-management" // Mise à jour vers une page existante
+    buttonLink: "/biogas-management" 
   }
 ];
 
@@ -105,17 +105,16 @@ const MainCarousel: React.FC = () => {
         <CarouselContent className="h-[500px] md:h-[650px]">
           {carouselImages.map((image, index) => (
             <CarouselItem key={index} className="relative pl-0">
-              <div className="relative w-full h-full">
-                <div className="w-full h-full mx-auto relative">
+              <div className="relative w-full h-full overflow-hidden">
+                <div className="w-full h-full flex items-center justify-center">
                   <img
                     src={image.src}
                     alt={image.alt}
-                    className="w-full h-full object-contain"
-                    style={{ objectPosition: "center" }}
+                    className="w-auto h-full max-h-full object-contain"
                   />
                   {/* Overlay with gradient for better text readability */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#1B2B1A]/80 to-transparent" />
-                  <div className="absolute bottom-0 left-0 w-full p-6 md:p-10">
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1B2B1A]/60 to-transparent" />
+                  <div className="absolute bottom-0 left-0 w-full p-6 md:p-10 z-10">
                     <motion.div
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: current === index ? 1 : 0, y: current === index ? 0 : 20 }}
@@ -152,9 +151,9 @@ const MainCarousel: React.FC = () => {
           ))}
         </div>
 
-        <div className="hidden md:block">
-          <CarouselPrevious className="absolute left-4 top-1/2 h-10 w-10 -translate-y-1/2 bg-black/40 hover:bg-fertiloop-green-dark border-none text-white shadow-lg" />
-          <CarouselNext className="absolute right-4 top-1/2 h-10 w-10 -translate-y-1/2 bg-black/40 hover:bg-fertiloop-green-dark border-none text-white shadow-lg" />
+        <div className="hidden md:block z-20">
+          <CarouselPrevious className="absolute left-4 top-1/2 h-10 w-10 -translate-y-1/2 bg-black/40 hover:bg-fertiloop-green-dark border-none text-white shadow-lg z-20" />
+          <CarouselNext className="absolute right-4 top-1/2 h-10 w-10 -translate-y-1/2 bg-black/40 hover:bg-fertiloop-green-dark border-none text-white shadow-lg z-20" />
         </div>
       </Carousel>
     </div>

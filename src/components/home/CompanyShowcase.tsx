@@ -29,11 +29,11 @@ const CompanyShowcase: React.FC = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
-              <div className="bg-fertiloop-green/10 p-6 rounded-lg mb-6">
+              <div className="bg-fertiloop-green/10 p-6 rounded-lg mb-6 flex items-center justify-center h-72">
                 <img 
                   src="/lovable-uploads/bdae05c3-c03f-4da6-92f8-63091a46137f.png" 
                   alt="Biodigesteur Fertiloop" 
-                  className="w-full h-64 object-cover rounded-lg shadow-md"
+                  className="max-h-full max-w-full object-contain rounded-lg shadow-md"
                 />
               </div>
               <h3 className="text-xl font-bold text-gray-900">Technologie de pointe</h3>
@@ -49,11 +49,11 @@ const CompanyShowcase: React.FC = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              <div className="bg-fertiloop-green/10 p-6 rounded-lg mb-6">
+              <div className="bg-fertiloop-green/10 p-6 rounded-lg mb-6 flex items-center justify-center h-72">
                 <img 
                   src="/lovable-uploads/a7487d3b-bbc5-4c46-9752-2dcf8e15b6cd.png" 
                   alt="Bonbonne de biogaz Fertiloop" 
-                  className="w-full h-64 object-cover rounded-lg shadow-md"
+                  className="max-h-full max-w-full object-contain rounded-lg shadow-md"
                 />
               </div>
               <h3 className="text-xl font-bold text-gray-900">Biogaz écologique</h3>
@@ -69,11 +69,11 @@ const CompanyShowcase: React.FC = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.5 }}
             >
-              <div className="bg-fertiloop-green/10 p-6 rounded-lg mb-6">
+              <div className="bg-fertiloop-green/10 p-6 rounded-lg mb-6 flex items-center justify-center h-72">
                 <img 
                   src="/lovable-uploads/fd50b7cc-ca5a-4228-b073-7917416084f5.png" 
                   alt="Résultats de biodigestion" 
-                  className="w-full h-64 object-cover rounded-lg shadow-md"
+                  className="max-h-full max-w-full object-contain rounded-lg shadow-md"
                 />
               </div>
               <h3 className="text-xl font-bold text-gray-900">Double bénéfice</h3>
