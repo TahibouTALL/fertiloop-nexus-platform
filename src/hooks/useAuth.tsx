@@ -1,9 +1,8 @@
-
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Définition des rôles disponibles
-export type UserRole = "farmer" | "household" | "logistics" | "admin";
+export type UserRole = "farmer" | "household" | "logistics" | "admin" | "restaurant" | "hotel";
 
 // Interface utilisateur
 export interface User {
