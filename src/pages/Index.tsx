@@ -5,6 +5,7 @@ import Hero from "../components/home/Hero";
 import Features from "../components/home/Features";
 import ImageGallery from "../components/home/ImageGallery";
 import CompanyShowcase from "../components/home/CompanyShowcase";
+import MainCarousel from "../components/home/MainCarousel";
 import { Leaf, Recycle, Cylinder, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -12,7 +13,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
-      <Hero />
+      <MainCarousel />
       <Features />
       <CompanyShowcase />
       <ImageGallery />
