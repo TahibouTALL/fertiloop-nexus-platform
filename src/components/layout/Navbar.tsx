@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -48,13 +49,21 @@ const Navbar = () => {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link to="/" className="flex-shrink-0 flex items-center">
-              <motion.img
-                className="block h-8 w-auto"
-                src="https://placehold.co/200x80/e2f2d5/1f7532?text=Fertiloop"
-                alt="Fertiloop"
+              <motion.div
+                className="flex items-center"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-              />
+              >
+                <img
+                  className="h-10 w-10 mr-2"
+                  src="/lovable-uploads/4eb1fc11-5e7f-4cdd-a755-9dffd17d3b51.png"
+                  alt="Fertiloop Logo"
+                />
+                <div className="flex flex-col">
+                  <span className="text-fertiloop-green font-bold text-xl">Fertiloop</span>
+                  <span className="text-fertiloop-green/70 text-xs">Closing the loop</span>
+                </div>
+              </motion.div>
             </Link>
             <nav className="hidden md:ml-6 md:flex md:space-x-8">
               {mainNavItems.map((item) => (
@@ -100,6 +109,18 @@ const Navbar = () => {
                 </SheetTrigger>
                 <SheetContent side="right">
                   <nav className="flex flex-col gap-4 mt-8">
+                    <div className="flex items-center mb-6 border-b pb-4">
+                      <img
+                        className="h-8 w-8 mr-2"
+                        src="/lovable-uploads/4eb1fc11-5e7f-4cdd-a755-9dffd17d3b51.png"
+                        alt="Fertiloop Logo"
+                      />
+                      <div className="flex flex-col">
+                        <span className="text-fertiloop-green font-bold text-lg">Fertiloop</span>
+                        <span className="text-fertiloop-green/70 text-xs">Closing the loop</span>
+                      </div>
+                    </div>
+                    
                     {mainNavItems.map((item) => (
                       <Link
                         key={item.href}

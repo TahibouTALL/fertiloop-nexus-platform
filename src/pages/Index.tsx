@@ -1,7 +1,10 @@
+
 import React from "react";
 import Navbar from "../components/layout/Navbar";
 import Hero from "../components/home/Hero";
 import Features from "../components/home/Features";
+import ImageGallery from "../components/home/ImageGallery";
+import CompanyShowcase from "../components/home/CompanyShowcase";
 import { Leaf, Recycle, Cylinder, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -11,6 +14,8 @@ const Index = () => {
       <Navbar />
       <Hero />
       <Features />
+      <CompanyShowcase />
+      <ImageGallery />
 
       {/* How it works section */}
       <div className="bg-fertiloop-beige-light py-12 sm:py-16">
@@ -230,7 +235,17 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
           <div className="md:flex md:justify-between">
             <div className="mb-8 md:mb-0">
-              <h2 className="text-fertiloop-green text-2xl font-bold">Fertiloop</h2>
+              <div className="flex items-center">
+                <img 
+                  src="/lovable-uploads/4eb1fc11-5e7f-4cdd-a755-9dffd17d3b51.png" 
+                  alt="Fertiloop Logo" 
+                  className="h-10 w-10 mr-2"
+                />
+                <div>
+                  <h2 className="text-fertiloop-green text-2xl font-bold">Fertiloop</h2>
+                  <p className="text-fertiloop-green/70 text-sm">Closing the loop</p>
+                </div>
+              </div>
               <p className="mt-2 text-sm text-gray-600">
                 Plateforme de gestion du biogaz<br />et de l'engrais
               </p>
