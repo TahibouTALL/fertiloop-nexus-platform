@@ -3,12 +3,18 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/layout/Navbar";
 import RegistrationForm from "../components/forms/RegistrationForm";
+import { motion } from "framer-motion";
 
 const Register = () => {
   return (
     <div className="min-h-screen bg-fertiloop-beige-light">
       <Navbar />
-      <div className="max-w-7xl mx-auto py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="max-w-7xl mx-auto py-8 sm:py-12 px-4 sm:px-6 lg:px-8"
+      >
         <div className="text-center mb-8">
           <h1 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
             Inscription
@@ -19,8 +25,13 @@ const Register = () => {
         </div>
 
         <div className="flex flex-col md:flex-row md:space-x-8 items-center justify-center">
-          <div className="md:w-1/2 mb-8 md:mb-0">
-            <div className="rounded-xl bg-white shadow-sm p-6 md:p-8">
+          <motion.div 
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="md:w-1/2 mb-8 md:mb-0"
+          >
+            <div className="rounded-xl bg-white shadow-sm p-6 md:p-8 hover:shadow-md transition-all duration-300">
               <div className="flex items-center mb-6">
                 <div className="mr-4">
                   <img 
@@ -40,7 +51,10 @@ const Register = () => {
               </div>
               
               <ul className="space-y-4">
-                <li className="flex p-3 bg-fertiloop-green/5 rounded-lg">
+                <motion.li 
+                  whileHover={{ scale: 1.02 }}
+                  className="flex p-3 bg-fertiloop-green/5 rounded-lg hover:bg-fertiloop-green/10 transition-colors"
+                >
                   <svg
                     className="h-6 w-6 text-fertiloop-green flex-shrink-0"
                     fill="none"
@@ -58,8 +72,11 @@ const Register = () => {
                     <span className="text-gray-700 font-medium">Engrais organiques de qualité</span>
                     <p className="text-sm text-gray-500 mt-1">Produits 100% naturels et écologiques</p>
                   </div>
-                </li>
-                <li className="flex p-3 bg-fertiloop-blue/5 rounded-lg">
+                </motion.li>
+                <motion.li 
+                  whileHover={{ scale: 1.02 }}
+                  className="flex p-3 bg-fertiloop-blue/5 rounded-lg hover:bg-fertiloop-blue/10 transition-colors"
+                >
                   <svg
                     className="h-6 w-6 text-fertiloop-blue flex-shrink-0"
                     fill="none"
@@ -77,8 +94,11 @@ const Register = () => {
                     <span className="text-gray-700 font-medium">Énergie renouvelable</span>
                     <p className="text-sm text-gray-500 mt-1">Biogaz issu de la valorisation des déchets</p>
                   </div>
-                </li>
-                <li className="flex p-3 bg-fertiloop-yellow/5 rounded-lg">
+                </motion.li>
+                <motion.li 
+                  whileHover={{ scale: 1.02 }}
+                  className="flex p-3 bg-fertiloop-yellow/5 rounded-lg hover:bg-fertiloop-yellow/10 transition-colors"
+                >
                   <svg
                     className="h-6 w-6 text-fertiloop-yellow-dark flex-shrink-0"
                     fill="none"
@@ -96,8 +116,11 @@ const Register = () => {
                     <span className="text-gray-700 font-medium">Suivi en temps réel</span>
                     <p className="text-sm text-gray-500 mt-1">Commandes et livraisons tracées de bout en bout</p>
                   </div>
-                </li>
-                <li className="flex p-3 bg-fertiloop-green/5 rounded-lg">
+                </motion.li>
+                <motion.li 
+                  whileHover={{ scale: 1.02 }}
+                  className="flex p-3 bg-fertiloop-green/5 rounded-lg hover:bg-fertiloop-green/10 transition-colors"
+                >
                   <svg
                     className="h-6 w-6 text-fertiloop-green flex-shrink-0"
                     fill="none"
@@ -115,10 +138,13 @@ const Register = () => {
                     <span className="text-gray-700 font-medium">Impact environnemental positif</span>
                     <p className="text-sm text-gray-500 mt-1">Réduction des déchets et des émissions de gaz à effet de serre</p>
                   </div>
-                </li>
+                </motion.li>
               </ul>
 
-              <div className="mt-8 p-4 bg-fertiloop-beige rounded-lg border border-fertiloop-beige-dark/20">
+              <motion.div 
+                whileHover={{ backgroundColor: "#F5F3E6" }}
+                className="mt-8 p-4 bg-fertiloop-beige rounded-lg border border-fertiloop-beige-dark/20"
+              >
                 <p className="text-sm text-gray-600 flex items-center">
                   <svg
                     className="h-5 w-5 text-fertiloop-green mr-2"
@@ -134,19 +160,24 @@ const Register = () => {
                     />
                   </svg>
                   Déjà inscrit?{" "}
-                  <Link to="/login" className="text-fertiloop-blue font-medium hover:underline ml-1">
+                  <Link to="/login" className="text-fertiloop-blue font-medium hover:underline hover:text-fertiloop-blue-dark transition-colors ml-1">
                     Se connecter
                   </Link>
                 </p>
-              </div>
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="md:w-1/2">
+          <motion.div 
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="md:w-1/2"
+          >
             <RegistrationForm />
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };
