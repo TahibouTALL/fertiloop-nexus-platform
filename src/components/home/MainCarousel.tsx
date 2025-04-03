@@ -110,9 +110,9 @@ const MainCarousel: React.FC = () => {
                 <img
                   src={image.src}
                   alt={image.alt}
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-contain md:object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 <div className="absolute bottom-0 left-0 w-full p-6 md:p-10">
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
