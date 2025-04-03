@@ -7,6 +7,8 @@ declare global {
         Marker: typeof google.maps.Marker;
         InfoWindow: typeof google.maps.InfoWindow;
         LatLng: typeof google.maps.LatLng;
+        LatLngBounds: typeof google.maps.LatLngBounds;
+        Point: typeof google.maps.Point;
         MapTypeId: {
           ROADMAP: string;
           SATELLITE: string;
