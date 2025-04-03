@@ -37,6 +37,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [session, setSession] = useState<Session | null>(null);
   const navigate = useNavigate();
 
+  // Function to validate user role
+  const validateUserRole = (role: string): UserRole => {
+    const validRoles: UserRole[] = ["farmer", "household", "logistics", "admin", "restaurant", "hotel"];
+    return validRoles.includes(role as UserRole) ? (role as UserRole) : "household";
+  };
+
   // Fetch user profile data
   const fetchUserProfile = async (userId: string) => {
     try {
@@ -75,7 +81,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
                 id: currentSession.user.id,
                 name: profile.name,
                 phone: profile.phone,
-                role: profile.role,
+                role: validateUserRole(profile.role),
                 email: profile.email,
                 location: profile.location
               });
@@ -105,7 +111,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
             id: currentSession.user.id,
             name: profile.name,
             phone: profile.phone,
-            role: profile.role,
+            role: validateUserRole(profile.role),
             email: profile.email,
             location: profile.location
           });
@@ -141,7 +147,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
             id: data.user.id,
             name: profile.name,
             phone: profile.phone,
-            role: profile.role,
+            role: validateUserRole(profile.role),
             email: profile.email,
             location: profile.location
           });

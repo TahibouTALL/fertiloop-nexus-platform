@@ -22,7 +22,7 @@ interface DistanceMatrixResult {
 
 export interface Marker {
   id: string;
-  position: google.maps.LatLngLiteral;
+  position: { lat: number; lng: number };
   type: 'origin' | 'destination';
   address?: string;
   title?: string;
@@ -35,10 +35,10 @@ const Logistics = () => {
   const [response, setResponse] = useState<DistanceMatrixResult | null>(null);
   const [request, setRequest] = useState<any | null>(null);
   const [mapCenter, setMapCenter] = useState({ lat: 14.7167, lng: -17.4677 }); // Dakar par défaut
-  const mapRef = useRef<google.maps.Map | null>(null);
+  const mapRef = useRef<any>(null);
   
   // Ajouter un marqueur
-  const addMarker = useCallback((position: google.maps.LatLngLiteral, type: 'origin' | 'destination', address?: string) => {
+  const addMarker = useCallback((position: { lat: number; lng: number }, type: 'origin' | 'destination', address?: string) => {
     const newMarker: Marker = {
       id: `marker-${Date.now()}`,
       position,
@@ -96,12 +96,12 @@ const Logistics = () => {
       return;
     }
     
-    const service = new google.maps.DistanceMatrixService();
+    const service = new window.google.maps.DistanceMatrixService();
     const requestOptions = {
       origins,
       destinations,
-      travelMode: google.maps.TravelMode.DRIVING,
-      unitSystem: google.maps.UnitSystem.METRIC,
+      travelMode: window.google.maps.TravelMode.DRIVING,
+      unitSystem: window.google.maps.UnitSystem.METRIC,
     };
     
     setRequest(requestOptions);
@@ -113,7 +113,7 @@ const Logistics = () => {
     
     service.getDistanceMatrix(
       requestOptions,
-      (response, status) => {
+      (response: any, status: string) => {
         if (status === 'OK' && response) {
           setResponse(response as DistanceMatrixResult);
           toast({
@@ -131,34 +131,6 @@ const Logistics = () => {
     );
   }, [markers, toast]);
   
-  // Charger l'API Google Maps
-  useEffect(() => {
-    const loadGoogleMapsAPI = () => {
-      if (!window.google || !window.google.maps) {
-        const script = document.createElement('script');
-        script.src = `https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_API_KEY&libraries=places`;
-        script.async = true;
-        script.defer = true;
-        script.onload = () => {
-          setLoading(false);
-          toast({
-            title: "Google Maps chargé",
-            description: "Cliquez sur la carte pour ajouter des points d'origine et de destination."
-          });
-        };
-        document.head.appendChild(script);
-        
-        return () => {
-          document.head.removeChild(script);
-        };
-      } else {
-        setLoading(false);
-      }
-    };
-    
-    loadGoogleMapsAPI();
-  }, [toast]);
-  
   return (
     <DashboardLayout>
       <div className="flex flex-col h-full">
@@ -175,7 +147,7 @@ const Logistics = () => {
               markers={markers}
               addMarker={addMarker}
               deleteMarkers={deleteMarkers}
-              setMapRef={(map: google.maps.Map) => { mapRef.current = map; }}
+              setMapRef={(map: any) => { mapRef.current = map; setLoading(false); }}
             />
           </div>
           <div className="lg:w-2/5 h-full overflow-auto">
