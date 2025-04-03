@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -52,6 +53,34 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				// Fertiloop custom colors
+				fertiloop: {
+					green: {
+						DEFAULT: '#2E6D32', // Primary green
+						light: '#4CAF50',
+						dark: '#1B5E20',
+					},
+					beige: {
+						DEFAULT: '#F5F3E6',
+						light: '#FAF8F0',
+						dark: '#EAE6D4',
+					},
+					gray: {
+						DEFAULT: '#F1F1F1',
+						light: '#FFFFFF',
+						dark: '#E0E0E0',
+					},
+					blue: {
+						DEFAULT: '#2979FF', // Action buttons
+						light: '#448AFF',
+						dark: '#2962FF',
+					},
+					yellow: {
+						DEFAULT: '#FFB74D', // Warnings and notifications
+						light: '#FFC773',
+						dark: '#FFA726',
+					},
+				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -84,11 +113,26 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'fade-in': {
+					'0%': { opacity: '0', transform: 'translateY(10px)' },
+					'100%': { opacity: '1', transform: 'translateY(0)' }
+				},
+				'fade-out': {
+					'0%': { opacity: '1' },
+					'100%': { opacity: '0' }
+				},
+				'slide-in': {
+					'0%': { transform: 'translateX(-100%)' },
+					'100%': { transform: 'translateX(0)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fade-in 0.3s ease-out',
+				'fade-out': 'fade-out 0.3s ease-out',
+				'slide-in': 'slide-in 0.4s ease-out'
 			}
 		}
 	},
