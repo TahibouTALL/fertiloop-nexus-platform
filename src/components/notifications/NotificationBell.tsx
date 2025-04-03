@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from "react";
-import { Bell } from "lucide-react";
+import { Bell, MessageSquare, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Popover,
@@ -16,10 +16,13 @@ import {
 } from "@/services/localTransactions";
 import { Badge } from "@/components/ui/badge";
 import NotificationList from "./NotificationList";
+import { useNavigate } from "react-router-dom";
 
 const NotificationBell = () => {
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [unreadCount, setUnreadCount] = useState(0);
+  const [showChatReminder, setShowChatReminder] = useState(false);
+  const navigate = useNavigate();
   
   useEffect(() => {
     // Chargement initial des notifications
@@ -28,7 +31,13 @@ const NotificationBell = () => {
     // Rafraîchir les notifications toutes les 30 secondes
     const interval = setInterval(loadNotifications, 30000);
     
-    return () => clearInterval(interval);
+    // Afficher l'indicateur de chat après 60 secondes de présence sur le site
+    const chatTimeout = setTimeout(() => setShowChatReminder(true), 60000);
+    
+    return () => {
+      clearInterval(interval);
+      clearTimeout(chatTimeout);
+    };
   }, []);
   
   const loadNotifications = () => {
@@ -47,29 +56,50 @@ const NotificationBell = () => {
     loadNotifications();
   };
   
+  const handleChatReminderClick = () => {
+    setShowChatReminder(false);
+    navigate("/support?tab=chat");
+  };
+  
   return (
-    <Popover>
-      <PopoverTrigger asChild>
-        <Button variant="ghost" size="icon" className="relative">
-          <Bell className="h-5 w-5" />
-          {unreadCount > 0 && (
-            <Badge 
-              className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 bg-fertiloop-green text-white" 
-              variant="default"
+    <div className="relative">
+      <Popover>
+        <PopoverTrigger asChild>
+          <Button variant="ghost" size="icon" className="relative">
+            <Bell className="h-5 w-5" />
+            {unreadCount > 0 && (
+              <Badge 
+                className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 bg-fertiloop-green text-white" 
+                variant="default"
+              >
+                {unreadCount}
+              </Badge>
+            )}
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent className="w-80 max-h-96 overflow-y-auto p-0">
+          <NotificationList 
+            notifications={notifications} 
+            onMarkAsRead={handleMarkAsRead}
+            onMarkAllAsRead={handleMarkAllAsRead}
+          />
+        </PopoverContent>
+      </Popover>
+      
+      {showChatReminder && (
+        <div className="absolute top-0 -right-4 w-4 h-4">
+          <div className="absolute -top-1 -right-1 animate-bounce">
+            <button 
+              onClick={handleChatReminderClick}
+              className="h-5 w-5 rounded-full bg-blue-500 flex items-center justify-center text-white"
+              title="Besoin d'aide? Discutez avec nous!"
             >
-              {unreadCount}
-            </Badge>
-          )}
-        </Button>
-      </PopoverTrigger>
-      <PopoverContent className="w-80 max-h-96 overflow-y-auto p-0">
-        <NotificationList 
-          notifications={notifications} 
-          onMarkAsRead={handleMarkAsRead}
-          onMarkAllAsRead={handleMarkAllAsRead}
-        />
-      </PopoverContent>
-    </Popover>
+              <MessageSquare className="h-3 w-3" />
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
   );
 };
 
