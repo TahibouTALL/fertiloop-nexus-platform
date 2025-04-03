@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./hooks/useAuth";
+import { DataProvider } from "./context/DataContext";
 import Index from "./pages/Index";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
@@ -27,45 +28,47 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <AuthProvider>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/access-denied" element={<AccessDenied />} />
-            
-            {/* Routes protégées */}
-            <Route path="/dashboard" element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            } />
-            <Route path="/biogas-management" element={
-              <ProtectedRoute allowedRoles={["admin", "logistics"]}>
-                <BiogasManagement />
-              </ProtectedRoute>
-            } />
-            <Route path="/fertilizer-orders" element={
-              <ProtectedRoute allowedRoles={["farmer", "admin"]}>
-                <FertilizerOrders />
-              </ProtectedRoute>
-            } />
-            <Route path="/payments" element={
-              <ProtectedRoute>
-                <PagePayments />
-              </ProtectedRoute>
-            } />
-            <Route path="/waste-collection" element={
-              <ProtectedRoute allowedRoles={["household", "logistics", "admin"]}>
-                <WasteCollection />
-              </ProtectedRoute>
-            } />
-            <Route path="/support" element={
-              <ProtectedRoute>
-                <Support />
-              </ProtectedRoute>
-            } />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <DataProvider>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/access-denied" element={<AccessDenied />} />
+              
+              {/* Routes protégées */}
+              <Route path="/dashboard" element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              } />
+              <Route path="/biogas-management" element={
+                <ProtectedRoute allowedRoles={["admin", "logistics"]}>
+                  <BiogasManagement />
+                </ProtectedRoute>
+              } />
+              <Route path="/fertilizer-orders" element={
+                <ProtectedRoute allowedRoles={["farmer", "admin"]}>
+                  <FertilizerOrders />
+                </ProtectedRoute>
+              } />
+              <Route path="/payments" element={
+                <ProtectedRoute>
+                  <PagePayments />
+                </ProtectedRoute>
+              } />
+              <Route path="/waste-collection" element={
+                <ProtectedRoute allowedRoles={["household", "logistics", "admin"]}>
+                  <WasteCollection />
+                </ProtectedRoute>
+              } />
+              <Route path="/support" element={
+                <ProtectedRoute>
+                  <Support />
+                </ProtectedRoute>
+              } />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </DataProvider>
         </AuthProvider>
       </BrowserRouter>
     </TooltipProvider>
