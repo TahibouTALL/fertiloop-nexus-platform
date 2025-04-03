@@ -1,0 +1,22 @@
+
+.input-field {
+  @apply w-full rounded-md border border-gray-300 px-4 py-2 text-sm focus:border-fertiloop-green focus:outline-none focus:ring-2 focus:ring-fertiloop-green/20 transition-all duration-200;
+}
+
+.btn-primary {
+  @apply bg-fertiloop-green text-white py-2 px-4 rounded-md hover:bg-fertiloop-green-dark transition-colors duration-200 font-medium;
+}
+
+/* Animation pour les champs validés */
+.input-field.border-fertiloop-green {
+  @apply shadow-sm shadow-fertiloop-green/20;
+}
+
+/* Styles pour le composant OTP */
+.otp-input {
+  @apply flex justify-center gap-2;
+}
+
+.otp-input-field {
+  @apply h-12 w-12 text-center text-lg border border-gray-300 rounded-md focus:border-fertiloop-green focus:outline-none focus:ring-2 focus:ring-fertiloop-green/20;
+}

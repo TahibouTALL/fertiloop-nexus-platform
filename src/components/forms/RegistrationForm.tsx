@@ -1,9 +1,9 @@
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'sonner';
 import { MapPin, User, Phone, Mail, Loader2, Check, Leaf } from "lucide-react";
 import { motion } from "framer-motion";
+import "./FormStyles.css"; // Importation des styles
 
 const RegistrationForm = () => {
   const navigate = useNavigate();
