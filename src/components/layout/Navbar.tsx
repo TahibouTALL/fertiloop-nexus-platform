@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -8,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, Home, ShoppingBag, CreditCard, Truck, Bell } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
+import NotificationBell from "../notifications/NotificationBell";
 
 const mainNavItems = [
   {
@@ -88,6 +88,7 @@ const Navbar = () => {
           </div>
           
           <div className="flex items-center">
+            <NotificationBell />
             <UserMenu />
             
             <div className="flex md:hidden ml-2">
@@ -134,10 +135,7 @@ const Navbar = () => {
                           <div className="text-base font-medium text-gray-800">Amadou Bamba</div>
                           <div className="text-sm font-medium text-gray-500">amadou@example.com</div>
                         </div>
-                        <Button variant="ghost" size="icon" className="ml-auto relative">
-                          <Bell className="h-5 w-5" />
-                          <span className="absolute top-0 right-0 h-2.5 w-2.5 bg-red-500 rounded-full border-2 border-white"></span>
-                        </Button>
+                        <NotificationBell />
                       </div>
                       <div className="mt-3 space-y-1 px-2">
                         <Link

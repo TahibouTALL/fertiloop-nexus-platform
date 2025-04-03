@@ -19,6 +19,7 @@ import WasteCollection from "./pages/WasteCollection";
 import AccessDenied from "./pages/AccessDenied";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import Logistics from "./pages/Logistics";
+import DemoNotifications from "./pages/DemoNotifications";
 
 const queryClient = new QueryClient();
 
@@ -70,6 +71,11 @@ const App = () => (
               <Route path="/support" element={
                 <ProtectedRoute>
                   <Support />
+                </ProtectedRoute>
+              } />
+              <Route path="/demo-notifications" element={
+                <ProtectedRoute>
+                  <DemoNotifications />
                 </ProtectedRoute>
               } />
               <Route path="*" element={<NotFound />} />
