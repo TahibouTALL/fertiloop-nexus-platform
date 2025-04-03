@@ -1,13 +1,13 @@
 
 import React, { useEffect, useRef } from 'react';
-import { Marker } from '@/pages/Logistics';
+import { Marker as MarkerType } from '@/pages/Logistics';
 import { Card } from '@/components/ui/card';
 import { useGoogleMapsLoader } from './useGoogleMaps';
 
 interface LogisticsMapProps {
   loading: boolean;
   mapCenter: { lat: number; lng: number };
-  markers: Marker[];
+  markers: MarkerType[];
   addMarker: (position: { lat: number; lng: number }, type: 'origin' | 'destination', address?: string) => void;
   deleteMarkers: () => void;
   setMapRef: (map: any) => void;
@@ -116,9 +116,14 @@ const LogisticsMap: React.FC<LogisticsMapProps> = ({
         `,
       });
       
-      newMarker.addListener('click', () => {
-        infoWindow.open(googleMapRef.current, newMarker);
-      });
+      // Use the correct parameter type for the addListener method
+      window.google.maps.event.addListener(
+        newMarker, 
+        'click', 
+        () => {
+          infoWindow.open(googleMapRef.current, newMarker);
+        }
+      );
       
       markersRef.current[marker.id] = newMarker;
     });

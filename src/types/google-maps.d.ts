@@ -1,4 +1,3 @@
-
 declare global {
   interface Window {
     google: {
@@ -222,7 +221,7 @@ declare namespace google.maps {
     pitch?: number;
   }
   
-  class Marker {
+  class Marker extends MVCObject {
     constructor(opts?: MarkerOptions);
     getAnimation(): Animation;
     getClickable(): boolean;
