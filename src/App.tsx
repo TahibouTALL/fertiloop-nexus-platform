@@ -11,6 +11,8 @@ import BiogasManagement from "./pages/BiogasManagement";
 import FertilizerOrders from "./pages/FertilizerOrders";
 import Support from "./pages/Support";
 import NotFound from "./pages/NotFound";
+import PagePayments from "./pages/PagePayments";
+import WasteCollection from "./pages/WasteCollection";
 
 const queryClient = new QueryClient();
 
