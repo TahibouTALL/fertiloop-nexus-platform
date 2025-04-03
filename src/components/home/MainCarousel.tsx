@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { 
   Carousel, 
@@ -78,14 +77,13 @@ const MainCarousel: React.FC = () => {
     api.on("select", handleSelect);
     api.on("reInit", handleSelect);
 
-    // Auto-scroll functionality
     const autoScrollInterval = setInterval(() => {
       if (api.canScrollNext()) {
         api.scrollNext();
       } else {
         api.scrollTo(0);
       }
-    }, 5000); // Change slide every 5 seconds
+    }, 5000);
 
     return () => {
       api.off("select", handleSelect);
@@ -103,33 +101,35 @@ const MainCarousel: React.FC = () => {
         }}
         setApi={setApi}
       >
-        <CarouselContent className="h-[600px] sm:h-[650px]">
+        <CarouselContent className="h-[500px] md:h-[650px]">
           {carouselImages.map((image, index) => (
-            <CarouselItem key={index} className="relative h-full pl-0">
-              <div className="relative h-full w-full overflow-hidden">
-                <img
-                  src={image.src}
-                  alt={image.alt}
-                  className="h-full w-full object-contain md:object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                <div className="absolute bottom-0 left-0 w-full p-6 md:p-10">
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: current === index ? 1 : 0, y: current === index ? 0 : 20 }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    <h2 className="text-2xl md:text-4xl font-bold text-white mb-2">{image.heading}</h2>
-                    <p className="text-white/80 text-lg md:text-xl mb-6 max-w-xl">{image.description}</p>
-                    {image.buttonText && image.buttonLink && (
-                      <Link to={image.buttonLink}>
-                        <Button className="bg-fertiloop-green hover:bg-fertiloop-green-dark text-white">
-                          {image.buttonText}
-                          <ArrowRight className="ml-2 h-4 w-4" />
-                        </Button>
-                      </Link>
-                    )}
-                  </motion.div>
+            <CarouselItem key={index} className="relative pl-0">
+              <div className="relative w-full h-full flex items-center justify-center">
+                <div className="w-full h-full max-w-7xl mx-auto relative">
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    className="absolute inset-0 w-full h-full object-contain md:object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                  <div className="absolute bottom-0 left-0 w-full p-6 md:p-10">
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: current === index ? 1 : 0, y: current === index ? 0 : 20 }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      <h2 className="text-2xl md:text-4xl font-bold text-white mb-2">{image.heading}</h2>
+                      <p className="text-white/80 text-lg md:text-xl mb-6 max-w-xl">{image.description}</p>
+                      {image.buttonText && image.buttonLink && (
+                        <Link to={image.buttonLink}>
+                          <Button className="bg-fertiloop-green hover:bg-fertiloop-green-dark text-white">
+                            {image.buttonText}
+                            <ArrowRight className="ml-2 h-4 w-4" />
+                          </Button>
+                        </Link>
+                      )}
+                    </motion.div>
+                  </div>
                 </div>
               </div>
             </CarouselItem>
