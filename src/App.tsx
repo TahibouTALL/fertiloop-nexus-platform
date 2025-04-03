@@ -20,6 +20,10 @@ import AccessDenied from "./pages/AccessDenied";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import Logistics from "./pages/Logistics";
 import DemoNotifications from "./pages/DemoNotifications";
+// New imports
+import Profile from "./pages/Profile";
+import Settings from "./pages/Settings";
+import Logout from "./pages/Logout";
 
 const queryClient = new QueryClient();
 
@@ -37,7 +41,7 @@ const App = () => (
               <Route path="/login" element={<Login />} />
               <Route path="/access-denied" element={<AccessDenied />} />
               
-              {/* Routes protégées */}
+              {/* Protected Routes */}
               <Route path="/dashboard" element={
                 <ProtectedRoute>
                   <Dashboard />
@@ -78,6 +82,24 @@ const App = () => (
                   <DemoNotifications />
                 </ProtectedRoute>
               } />
+              
+              {/* New Routes */}
+              <Route path="/profile" element={
+                <ProtectedRoute>
+                  <Profile />
+                </ProtectedRoute>
+              } />
+              <Route path="/settings" element={
+                <ProtectedRoute>
+                  <Settings />
+                </ProtectedRoute>
+              } />
+              <Route path="/logout" element={
+                <ProtectedRoute>
+                  <Logout />
+                </ProtectedRoute>
+              } />
+
               <Route path="*" element={<NotFound />} />
             </Routes>
           </DataProvider>
