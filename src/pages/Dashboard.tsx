@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Trash2, Truck, Leaf, Cylinder, BarChart3, Calendar } from "lucide-react";
 import TransactionHistory from "../components/dashboard/TransactionHistory";
 import DashboardCard from "../components/dashboard/DashboardCard";
+import { useAuth } from "@/hooks/useAuth";
 
 const userTransactions = [
   {
@@ -39,9 +40,18 @@ const userTransactions = [
 
 const Dashboard = () => {
   const [userRole, setUserRole] = useState<"farmer" | "household" | "restaurant" | "hotel" | "admin">("farmer");
+  const { user } = useAuth();
 
   const handleRoleChange = (role: "farmer" | "household" | "restaurant" | "hotel" | "admin") => {
     setUserRole(role);
+  };
+
+  const getUserInitials = () => {
+    if (!user?.name) return "U";
+    
+    const names = user.name.split(" ");
+    if (names.length === 1) return names[0].charAt(0).toUpperCase();
+    return (names[0].charAt(0) + names[names.length - 1].charAt(0)).toUpperCase();
   };
 
   return (
@@ -65,10 +75,10 @@ const Dashboard = () => {
             <div>
               <Link to="/profile" className="flex items-center">
                 <div className="h-8 w-8 rounded-full bg-fertiloop-green text-white flex items-center justify-center">
-                  <span className="font-medium text-sm">AB</span>
+                  <span className="font-medium text-sm">{getUserInitials()}</span>
                 </div>
                 <span className="ml-2 text-sm font-medium text-gray-700 hidden md:block">
-                  Amadou Bamba
+                  {user?.name || "Utilisateur"}
                 </span>
               </Link>
             </div>
@@ -261,8 +271,6 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
-
 function User(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
@@ -303,3 +311,5 @@ function ShoppingBag(props: React.SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+
+export default Dashboard;
