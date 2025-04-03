@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -53,44 +52,49 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				// Fertiloop custom colors - updated with richer, deeper tones
 				fertiloop: {
 					green: {
-						DEFAULT: '#2E6D32', // Primary green
+						DEFAULT: '#2E6D32',
 						light: '#4CAF50',
 						dark: '#1B5E20',
+						soft: '#E8F5E9'
 					},
 					beige: {
-						DEFAULT: '#F0EBD8', // Plus chaud et moins vif
+						DEFAULT: '#F0EBD8',
 						light: '#F5F3E6',
-						dark: '#E6E0C5', // Plus foncé pour contraste
-					},
-					gray: {
-						DEFAULT: '#EAEAEA', // Légèrement plus sombre
-						light: '#F8F8F8', // Moins brillant
-						dark: '#D0D0D0', // Plus de contraste
+						dark: '#E6E0C5',
+						pastel: '#FFF9E6'
 					},
 					blue: {
-						DEFAULT: '#1E6BB8', // Bleu plus profond
+						DEFAULT: '#1E6BB8',
 						light: '#4890D8',
 						dark: '#0D47A1',
+						soft: '#E3F2FD'
 					},
 					yellow: {
-						DEFAULT: '#F9A825', // Jaune plus chaud
-						light: '#FFB74D',
+						DEFAULT: '#F9A825',
+						light: '#FFD54F',
 						dark: '#F57F17',
+						soft: '#FFFDE7'
 					},
-					// Nouvelles couleurs
-					brown: {
-						DEFAULT: '#795548',
-						light: '#A1887F',
-						dark: '#5D4037',
+					gray: {
+						DEFAULT: '#EAEAEA',
+						light: '#F8F8F8',
+						dark: '#D0D0D0',
+						soft: '#F5F5F5'
 					},
 					earth: {
 						DEFAULT: '#8D6E63',
-						light: '#A18276',
+						light: '#A1887F',
 						dark: '#6D4C41',
+						soft: '#EFEBE9'
 					},
+					coral: {
+						DEFAULT: '#FF7F50',
+						light: '#FFA07A',
+						dark: '#FF4500',
+						soft: '#FFF3E0'
+					}
 				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
