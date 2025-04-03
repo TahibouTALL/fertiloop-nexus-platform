@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { 
   Carousel, 
@@ -104,14 +105,17 @@ const MainCarousel: React.FC = () => {
         <CarouselContent className="h-[500px] md:h-[650px]">
           {carouselImages.map((image, index) => (
             <CarouselItem key={index} className="relative pl-0">
-              <div className="relative w-full h-full flex items-center justify-center">
-                <div className="w-full h-full max-w-7xl mx-auto relative">
+              <div className="relative w-full h-full">
+                {/* Removed flex and centering to prevent cropping */}
+                <div className="w-full h-full mx-auto relative">
                   <img
                     src={image.src}
                     alt={image.alt}
-                    className="absolute inset-0 w-full h-full object-contain md:object-cover"
+                    className="w-full h-full object-contain"
+                    style={{ objectPosition: "center" }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                  {/* Reduced the opacity of the gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
                   <div className="absolute bottom-0 left-0 w-full p-6 md:p-10">
                     <motion.div
                       initial={{ opacity: 0, y: 20 }}
@@ -136,7 +140,7 @@ const MainCarousel: React.FC = () => {
           ))}
         </CarouselContent>
 
-        <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
+        <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-10">
           {carouselImages.map((_, index) => (
             <button
               key={index}
