@@ -18,6 +18,36 @@ interface CompanyImage {
 
 const companyImages: CompanyImage[] = [
   {
+    src: "/lovable-uploads/e64e1495-3f90-49c4-946f-fb427005afd5.png",
+    alt: "Bonbonne Fertiloop avec logo",
+    description: "Notre bonbonne de biogaz écologique avec le logo Fertiloop"
+  },
+  {
+    src: "/lovable-uploads/28e5c3b8-8275-4109-81af-334eeebee6a2.png",
+    alt: "Bonbonne Fertiloop vue de face",
+    description: "Bonbonne de biogaz Fertiloop avec système de valve sécurisé"
+  },
+  {
+    src: "/lovable-uploads/a1ff9adc-04fe-429b-b3dd-1ea725e6ac52.png",
+    alt: "Bonbonne Fertiloop vue de dessus",
+    description: "Vue de dessus montrant la valve de notre bonbonne de biogaz"
+  },
+  {
+    src: "/lovable-uploads/a7487d3b-bbc5-4c46-9752-2dcf8e15b6cd.png",
+    alt: "Bonbonne Fertiloop complète",
+    description: "Bonbonne complète avec le logo Fertiloop et notre slogan 'Closing the loop'"
+  },
+  {
+    src: "/lovable-uploads/f63a87ac-6f14-4833-9b87-cff52d592e32.png",
+    alt: "Logo Fertiloop noir",
+    description: "Notre logo emblématique sur fond noir représentant notre engagement pour l'économie circulaire"
+  },
+  {
+    src: "/lovable-uploads/c434d401-67a4-4c6c-8469-96e794d1348c.png",
+    alt: "Logo Fertiloop blanc",
+    description: "Version blanche de notre logo représentant la durabilité et le cycle naturel"
+  },
+  {
     src: "/lovable-uploads/bdae05c3-c03f-4da6-92f8-63091a46137f.png",
     alt: "Biodigesteur Fertiloop",
     description: "Notre biodigesteur principal pour la transformation des déchets en biogaz"

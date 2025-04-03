@@ -51,14 +51,14 @@ const CompanyShowcase: React.FC = () => {
             >
               <div className="bg-fertiloop-green/10 p-6 rounded-lg mb-6">
                 <img 
-                  src="/lovable-uploads/89a1dc4d-21cf-4359-9aa1-75a1a9abd9a5.png" 
-                  alt="Processus de biodigestion" 
+                  src="/lovable-uploads/a7487d3b-bbc5-4c46-9752-2dcf8e15b6cd.png" 
+                  alt="Bonbonne de biogaz Fertiloop" 
                   className="w-full h-64 object-cover rounded-lg shadow-md"
                 />
               </div>
-              <h3 className="text-xl font-bold text-gray-900">Processus écologique</h3>
+              <h3 className="text-xl font-bold text-gray-900">Biogaz écologique</h3>
               <p className="mt-2 text-gray-600">
-                Un processus naturel de décomposition anaérobie qui transforme les déchets en ressources renouvelables.
+                Notre biogaz est conditionné dans des bonbonnes éco-responsables, facilement utilisables pour vos besoins énergétiques.
               </p>
             </motion.div>
 
