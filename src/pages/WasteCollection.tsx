@@ -1,8 +1,11 @@
 
 import React, { useState } from "react";
-import { Calendar, Clock, Map, CheckCircle, Truck, AlertTriangle } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Calendar, Clock, Map, CheckCircle, Truck, AlertTriangle, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
+import { toast } from "sonner";
 
 const collectionRequests = [
   {
@@ -59,6 +62,8 @@ const WasteCollection = () => {
     e.preventDefault();
     // Simulate form submission
     setRequestSubmitted(true);
+    toast.success("Demande de collecte envoyée avec succès!");
+    
     // Reset form after 3 seconds
     setTimeout(() => {
       setRequestSubmitted(false);
@@ -81,6 +86,17 @@ const WasteCollection = () => {
 
   return (
     <div className="min-h-screen bg-fertiloop-gray">
+      <header className="bg-white shadow">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center">
+          <Link to="/dashboard" className="mr-4">
+            <ArrowLeft className="h-5 w-5 text-gray-500 hover:text-fertiloop-green transition-colors" />
+          </Link>
+          <h1 className="text-xl font-bold text-gray-900">
+            Collecte des biodéchets
+          </h1>
+        </div>
+      </header>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex flex-col space-y-8">
           {/* Header */}
@@ -94,16 +110,14 @@ const WasteCollection = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Request form */}
             <div className="lg:col-span-2">
-              <div className="bg-white rounded-lg shadow overflow-hidden">
-                <div className="border-b border-gray-200 px-6 py-4">
+              <Card>
+                <CardHeader className="border-b border-gray-200">
                   <div className="flex items-center">
                     <Truck className="h-5 w-5 text-fertiloop-green mr-2" />
-                    <h2 className="text-lg font-medium text-gray-900">
-                      Demander une collecte
-                    </h2>
+                    <CardTitle>Demander une collecte</CardTitle>
                   </div>
-                </div>
-                <div className="p-6">
+                </CardHeader>
+                <CardContent className="pt-6">
                   {requestSubmitted ? (
                     <div className="flex flex-col items-center justify-center py-6">
                       <div className="h-16 w-16 rounded-full bg-green-100 flex items-center justify-center mb-4">
@@ -221,22 +235,20 @@ const WasteCollection = () => {
                       </div>
                     </form>
                   )}
-                </div>
-              </div>
+                </CardContent>
+              </Card>
             </div>
 
             {/* Collection history */}
             <div className="lg:col-span-1">
-              <div className="bg-white rounded-lg shadow overflow-hidden h-full">
-                <div className="border-b border-gray-200 px-6 py-4">
+              <Card className="h-full">
+                <CardHeader className="border-b border-gray-200">
                   <div className="flex items-center">
                     <Calendar className="h-5 w-5 text-fertiloop-green mr-2" />
-                    <h2 className="text-lg font-medium text-gray-900">
-                      Historique des collectes
-                    </h2>
+                    <CardTitle>Historique des collectes</CardTitle>
                   </div>
-                </div>
-                <div className="p-6">
+                </CardHeader>
+                <CardContent className="pt-6">
                   {collectionRequests.length > 0 ? (
                     <div className="space-y-6">
                       {collectionRequests.map((request) => (
@@ -276,8 +288,8 @@ const WasteCollection = () => {
                       Voir toutes les collectes
                     </Button>
                   </div>
-                </div>
-              </div>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </div>

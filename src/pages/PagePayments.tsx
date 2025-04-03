@@ -1,7 +1,9 @@
 
 import React from "react";
-import { CreditCard, Receipt, Clock, Check } from "lucide-react";
+import { CreditCard, Receipt, Clock, Check, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
+import { Link } from "react-router-dom";
 
 const paymentMethods = [
   {
@@ -64,29 +66,36 @@ const StatusIcon = ({ status }: { status: string }) => {
 const PagePayments = () => {
   return (
     <div className="min-h-screen bg-fertiloop-gray">
+      <header className="bg-white shadow">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center">
+          <Link to="/dashboard" className="mr-4">
+            <ArrowLeft className="h-5 w-5 text-gray-500 hover:text-fertiloop-green transition-colors" />
+          </Link>
+          <h1 className="text-xl font-bold text-gray-900">
+            Paiements
+          </h1>
+        </div>
+      </header>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex flex-col space-y-8">
-          {/* Header */}
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">Paiements</h1>
+            <h1 className="text-2xl font-bold text-gray-900">Gestion des paiements</h1>
             <p className="mt-2 text-gray-600">
               Gérez vos méthodes de paiement et consultez vos transactions récentes
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Payment methods section */}
             <div className="lg:col-span-2">
-              <div className="bg-white rounded-lg shadow overflow-hidden">
-                <div className="border-b border-gray-200 px-6 py-4">
+              <Card>
+                <CardHeader className="border-b border-gray-200">
                   <div className="flex items-center">
                     <CreditCard className="h-5 w-5 text-fertiloop-green mr-2" />
-                    <h2 className="text-lg font-medium text-gray-900">
-                      Méthodes de paiement
-                    </h2>
+                    <CardTitle>Méthodes de paiement</CardTitle>
                   </div>
-                </div>
-                <div className="p-6">
+                </CardHeader>
+                <CardContent className="pt-6">
                   <div className="space-y-4">
                     {paymentMethods.map((method) => (
                       <div
@@ -128,22 +137,19 @@ const PagePayments = () => {
                       Ajouter une nouvelle méthode de paiement
                     </Button>
                   </div>
-                </div>
-              </div>
+                </CardContent>
+              </Card>
             </div>
 
-            {/* Recent transactions section */}
             <div className="lg:col-span-1">
-              <div className="bg-white rounded-lg shadow overflow-hidden h-full">
-                <div className="border-b border-gray-200 px-6 py-4">
+              <Card className="h-full">
+                <CardHeader className="border-b border-gray-200">
                   <div className="flex items-center">
                     <Receipt className="h-5 w-5 text-fertiloop-green mr-2" />
-                    <h2 className="text-lg font-medium text-gray-900">
-                      Transactions récentes
-                    </h2>
+                    <CardTitle>Transactions récentes</CardTitle>
                   </div>
-                </div>
-                <div className="p-6">
+                </CardHeader>
+                <CardContent className="pt-6">
                   <div className="space-y-4">
                     {recentTransactions.map((transaction) => (
                       <div
@@ -179,8 +185,8 @@ const PagePayments = () => {
                       Voir toutes les transactions
                     </Button>
                   </div>
-                </div>
-              </div>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </div>
