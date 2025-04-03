@@ -1,14 +1,29 @@
 
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, User, Phone, Briefcase } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { useToast } from "@/components/ui/use-toast";
 
 const Profile = () => {
-  const { user } = useAuth();
-
-  console.log("User data in profile:", user); // Ajout d'un log pour déboguer
+  const { user, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+  const { toast } = useToast();
+  
+  console.log("User data in profile:", user); // Debug log
+  
+  useEffect(() => {
+    // If not authenticated, redirect to login
+    if (!isAuthenticated) {
+      toast({
+        title: "Accès refusé",
+        description: "Veuillez vous connecter pour accéder à votre profil.",
+        variant: "destructive",
+      });
+      navigate("/login");
+    }
+  }, [isAuthenticated, navigate, toast]);
 
   // Function to get user initials
   const getUserInitials = () => {
@@ -38,6 +53,17 @@ const Profile = () => {
         return role;
     }
   };
+
+  if (!user) {
+    return (
+      <div className="min-h-screen bg-fertiloop-gray flex items-center justify-center">
+        <div className="text-center">
+          <Briefcase className="mx-auto h-12 w-12 text-fertiloop-green animate-pulse" />
+          <p className="mt-4 text-lg text-gray-700">Chargement du profil...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-fertiloop-gray">

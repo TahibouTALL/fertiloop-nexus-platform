@@ -3,15 +3,19 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Loader2 } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
+import { useAuth } from "@/hooks/useAuth";
 
 const Logout = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { signOut } = useAuth();
 
   useEffect(() => {
     const performLogout = async () => {
       try {
-        // Add logout logic here (e.g., clear tokens, reset auth state)
+        // Use the signOut function from useAuth to properly handle logout
+        signOut();
+        
         toast({
           title: "Déconnexion réussie",
           description: "Vous avez été déconnecté avec succès.",
@@ -27,7 +31,7 @@ const Logout = () => {
     };
 
     performLogout();
-  }, [navigate, toast]);
+  }, [navigate, toast, signOut]);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-fertiloop-gray">
