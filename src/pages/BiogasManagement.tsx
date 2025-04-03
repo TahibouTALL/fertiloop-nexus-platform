@@ -1,7 +1,6 @@
-
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { ChevronLeft, GasCylinder, Check, Clock } from "lucide-react";
+import { ChevronLeft, Cylinder, Check, Clock } from "lucide-react";
 import { toast } from "sonner";
 
 const BiogasManagement = () => {
@@ -44,7 +43,7 @@ const BiogasManagement = () => {
         <div className="bg-white rounded-xl shadow-sm p-6 mb-6">
           <div className="flex items-center mb-6">
             <div className="h-12 w-12 bg-fertiloop-yellow/20 rounded-full flex items-center justify-center">
-              <GasCylinder className="h-6 w-6 text-fertiloop-yellow-dark" />
+              <Cylinder className="h-6 w-6 text-fertiloop-yellow-dark" />
             </div>
             <h2 className="ml-4 text-xl font-semibold text-gray-900">
               Signaler une bonbonne vide

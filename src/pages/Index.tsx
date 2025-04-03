@@ -1,9 +1,8 @@
-
 import React from "react";
 import Navbar from "../components/layout/Navbar";
 import Hero from "../components/home/Hero";
 import Features from "../components/home/Features";
-import { Leaf, Recycle, GasCylinder, ChevronRight } from "lucide-react";
+import { Leaf, Recycle, Cylinder, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Index = () => {
@@ -96,7 +95,7 @@ const Index = () => {
                 <div className="px-4 py-5 sm:px-6 bg-fertiloop-green-light/10">
                   <div className="flex items-center">
                     <div className="flex-shrink-0">
-                      <GasCylinder className="h-8 w-8 text-fertiloop-green" />
+                      <Cylinder className="h-8 w-8 text-fertiloop-green" />
                     </div>
                     <h3 className="ml-3 text-lg font-medium text-gray-900">Biogaz</h3>
                   </div>

@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Truck, Leaf, Recycle, GasCylinder, MapPin, Clock } from "lucide-react";
+import { Truck, Leaf, Recycle, Cylinder, MapPin, Clock } from "lucide-react";
 
 const features = [
   {
@@ -11,7 +11,7 @@ const features = [
   {
     name: "Production de biogaz",
     description: "Transformation des biodéchets en biogaz durable pour une utilisation domestique et professionnelle.",
-    icon: GasCylinder,
+    icon: Cylinder,
   },
   {
     name: "Engrais organique",

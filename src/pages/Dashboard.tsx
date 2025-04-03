@@ -1,7 +1,6 @@
-
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Trash2, Truck, Leaf, GasCylinder, BarChart3, Calendar } from "lucide-react";
+import { Trash2, Truck, Leaf, Cylinder, BarChart3, Calendar } from "lucide-react";
 import TransactionHistory from "../components/dashboard/TransactionHistory";
 import DashboardCard from "../components/dashboard/DashboardCard";
 
@@ -160,7 +159,7 @@ const Dashboard = () => {
             <DashboardCard
               title="Biogaz"
               description="Commander du biogaz"
-              icon={<GasCylinder className="h-6 w-6 text-fertiloop-green" />}
+              icon={<Cylinder className="h-6 w-6 text-fertiloop-green" />}
               link="/biogas-management"
             />
           </div>
@@ -264,7 +263,6 @@ const Dashboard = () => {
 
 export default Dashboard;
 
-// Add missing icons
 function User(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
