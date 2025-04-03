@@ -30,9 +30,9 @@ const HowItWorks: React.FC = () => {
             </div>
           </div>
 
-          <div className="mt-8 lg:grid lg:grid-cols-3 lg:gap-8">
-            <div className="relative">
-              <div className="flex items-center justify-center h-20 w-20 rounded-full bg-fertiloop-green text-white text-2xl font-bold mx-auto mb-4">
+          <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-3 lg:gap-x-8">
+            <div className="relative flex flex-col items-center p-4 sm:p-6">
+              <div className="flex items-center justify-center h-16 w-16 sm:h-20 sm:w-20 rounded-full bg-fertiloop-green text-white text-xl sm:text-2xl font-bold mb-4">
                 1
               </div>
               <h3 className="text-lg leading-6 font-medium text-gray-900 text-center">Collecte des biodéchets</h3>
@@ -41,8 +41,8 @@ const HowItWorks: React.FC = () => {
               </p>
             </div>
 
-            <div className="mt-10 lg:mt-0">
-              <div className="flex items-center justify-center h-20 w-20 rounded-full bg-fertiloop-green text-white text-2xl font-bold mx-auto mb-4">
+            <div className="relative flex flex-col items-center p-4 sm:p-6">
+              <div className="flex items-center justify-center h-16 w-16 sm:h-20 sm:w-20 rounded-full bg-fertiloop-green text-white text-xl sm:text-2xl font-bold mb-4">
                 2
               </div>
               <h3 className="text-lg leading-6 font-medium text-gray-900 text-center">Transformation</h3>
@@ -51,8 +51,8 @@ const HowItWorks: React.FC = () => {
               </p>
             </div>
 
-            <div className="mt-10 lg:mt-0">
-              <div className="flex items-center justify-center h-20 w-20 rounded-full bg-fertiloop-green text-white text-2xl font-bold mx-auto mb-4">
+            <div className="relative flex flex-col items-center p-4 sm:p-6">
+              <div className="flex items-center justify-center h-16 w-16 sm:h-20 sm:w-20 rounded-full bg-fertiloop-green text-white text-xl sm:text-2xl font-bold mb-4">
                 3
               </div>
               <h3 className="text-lg leading-6 font-medium text-gray-900 text-center">Utilisation</h3>
