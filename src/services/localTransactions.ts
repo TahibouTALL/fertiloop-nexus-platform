@@ -1,9 +1,9 @@
-
 import { Transaction } from "../components/payments/PaymentForm";
 import { toast } from "@/hooks/use-toast";
 
 const LOCAL_STORAGE_KEY = "fertiloop_transactions";
 const NOTIFICATIONS_KEY = "fertiloop_notifications";
+const CHAT_MESSAGES_KEY = "fertiloop-chat-messages";
 
 export interface Notification {
   id: string;
@@ -11,8 +11,9 @@ export interface Notification {
   type: "info" | "success" | "warning" | "error";
   read: boolean;
   date: Date;
-  category: "container" | "order" | "reminder" | "thanks";
+  category: "container" | "order" | "reminder" | "thanks" | "chat";
   relatedId?: string;
+  preview?: string; // Preview text for chat messages
 }
 
 // Récupérer les transactions depuis le localStorage
@@ -153,6 +154,8 @@ const getNotificationTitle = (category: Notification["category"]): string => {
       return "Rappel";
     case "thanks":
       return "Remerciement";
+    case "chat":
+      return "Message";
     default:
       return "Notification";
   }
@@ -205,3 +208,45 @@ export const scheduleReminderNotification = (message: string, delayInSeconds: nu
   }, delayInSeconds * 1000);
 };
 
+// Create chat message notification
+export const createChatMessageNotification = (message: string, preview: string): void => {
+  createNotification({
+    message,
+    preview,
+    type: "info",
+    category: "chat"
+  });
+};
+
+// Sync chat messages with notifications
+export const syncChatMessagesToNotifications = (): void => {
+  try {
+    const storedMessages = localStorage.getItem(CHAT_MESSAGES_KEY);
+    if (!storedMessages) return;
+    
+    const parsedMessages = JSON.parse(storedMessages);
+    const agentMessages = parsedMessages
+      .filter((msg: any) => msg.type === "agent" && new Date(msg.timestamp) > new Date(Date.now() - 24 * 60 * 60 * 1000))
+      .slice(0, 3);
+    
+    if (agentMessages.length === 0) return;
+    
+    // Get existing notifications
+    const existingNotifications = getNotifications();
+    const chatNotificationIds = existingNotifications
+      .filter(n => n.category === "chat")
+      .map(n => n.relatedId);
+    
+    // Create notifications for new messages
+    agentMessages.forEach((msg: any) => {
+      if (!chatNotificationIds.includes(msg.id)) {
+        createChatMessageNotification(
+          "Nouveau message du support",
+          msg.content.length > 50 ? msg.content.substring(0, 50) + "..." : msg.content
+        );
+      }
+    });
+  } catch (e) {
+    console.error("Error syncing chat messages to notifications:", e);
+  }
+};

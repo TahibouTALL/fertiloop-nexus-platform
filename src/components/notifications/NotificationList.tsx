@@ -2,8 +2,9 @@
 import React from "react";
 import { type Notification } from "@/services/localTransactions";
 import { Button } from "@/components/ui/button";
-import { Check, Bell, Package, Clock } from "lucide-react";
+import { Check, Bell, Package, Clock, MessageSquare } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useNavigate } from "react-router-dom";
 
 interface NotificationListProps {
   notifications: Notification[];
@@ -16,6 +17,8 @@ const NotificationList: React.FC<NotificationListProps> = ({
   onMarkAsRead,
   onMarkAllAsRead,
 }) => {
+  const navigate = useNavigate();
+
   const formatDate = (date: Date) => {
     const now = new Date();
     const diffInMinutes = Math.floor((now.getTime() - date.getTime()) / (1000 * 60));
@@ -43,8 +46,21 @@ const NotificationList: React.FC<NotificationListProps> = ({
         return <Clock className="h-5 w-5 text-amber-500" />;
       case "thanks":
         return <Check className="h-5 w-5 text-green-500" />;
+      case "chat":
+        return <MessageSquare className="h-5 w-5 text-blue-500" />;
       default:
         return <Bell className="h-5 w-5 text-gray-500" />;
+    }
+  };
+
+  const handleNotificationClick = (notification: Notification) => {
+    if (!notification.read) {
+      onMarkAsRead(notification.id);
+    }
+    
+    // Navigate to chat for chat notifications
+    if (notification.category === "chat") {
+      navigate("/support?tab=chat");
     }
   };
 
@@ -78,7 +94,7 @@ const NotificationList: React.FC<NotificationListProps> = ({
                 "p-3 hover:bg-gray-50 transition-colors cursor-pointer relative",
                 !notification.read && "bg-blue-50/50"
               )}
-              onClick={() => !notification.read && onMarkAsRead(notification.id)}
+              onClick={() => handleNotificationClick(notification)}
             >
               <div className="flex">
                 <div className="mr-3 mt-1">
@@ -91,12 +107,19 @@ const NotificationList: React.FC<NotificationListProps> = ({
                       {notification.category === "order" && "Commande"}
                       {notification.category === "reminder" && "Rappel"}
                       {notification.category === "thanks" && "Remerciement"}
+                      {notification.category === "chat" && "Message"}
                     </span>
                     <span className="text-xs text-gray-500">
                       {formatDate(notification.date)}
                     </span>
                   </div>
                   <p className="text-sm text-gray-700">{notification.message}</p>
+                  
+                  {notification.category === "chat" && notification.preview && (
+                    <div className="mt-1 text-xs bg-gray-100 p-2 rounded-md text-gray-600 italic">
+                      "{notification.preview}"
+                    </div>
+                  )}
                   
                   {!notification.read && (
                     <div className="absolute top-3 right-3 h-2 w-2 bg-fertiloop-green rounded-full"></div>

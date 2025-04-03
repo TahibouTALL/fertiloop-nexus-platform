@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from "react";
-import { Bell, MessageSquare, Star } from "lucide-react";
+import { Bell, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Popover,
@@ -12,6 +12,7 @@ import {
   getUnreadNotificationsCount, 
   markNotificationAsRead, 
   markAllNotificationsAsRead,
+  syncChatMessagesToNotifications,
   type Notification
 } from "@/services/localTransactions";
 import { Badge } from "@/components/ui/badge";
@@ -34,9 +35,14 @@ const NotificationBell = () => {
     // Afficher l'indicateur de chat après 60 secondes de présence sur le site
     const chatTimeout = setTimeout(() => setShowChatReminder(true), 60000);
     
+    // Synchroniser les messages de chat avec les notifications
+    syncChatMessagesToNotifications();
+    const syncInterval = setInterval(syncChatMessagesToNotifications, 60000);
+    
     return () => {
       clearInterval(interval);
       clearTimeout(chatTimeout);
+      clearInterval(syncInterval);
     };
   }, []);
   
@@ -61,6 +67,10 @@ const NotificationBell = () => {
     navigate("/support?tab=chat");
   };
   
+  const hasUnreadChatNotifications = notifications.some(
+    n => n.category === "chat" && !n.read
+  );
+  
   return (
     <div className="relative">
       <Popover>
@@ -74,6 +84,9 @@ const NotificationBell = () => {
               >
                 {unreadCount}
               </Badge>
+            )}
+            {hasUnreadChatNotifications && (
+              <div className="absolute bottom-0 right-0 h-2 w-2 bg-blue-500 rounded-full"></div>
             )}
           </Button>
         </PopoverTrigger>
