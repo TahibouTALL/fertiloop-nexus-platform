@@ -1,12 +1,16 @@
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'sonner';
 import { MapPin, User, Phone, Mail, Loader2, Check, Leaf } from "lucide-react";
 import { motion } from "framer-motion";
-import "./FormStyles.css"; // Importation des styles
+import "./FormStyles.css";
+import { useAuth } from "@/hooks/useAuth";
+import type { UserRole } from "@/hooks/useAuth";
 
 const RegistrationForm = () => {
   const navigate = useNavigate();
+  const { signUp, isLoading: authLoading } = useAuth();
   
   const [formData, setFormData] = useState({
     lastName: "",
@@ -14,7 +18,9 @@ const RegistrationForm = () => {
     phone: "",
     email: "",
     location: "",
-    userType: "farmer", // farmer, household, restaurant, hotel
+    userType: "farmer" as UserRole, // farmer, household, restaurant, hotel
+    password: "",
+    confirmPassword: "",
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -23,6 +29,8 @@ const RegistrationForm = () => {
     firstName: false,
     phone: false,
     location: false,
+    password: false,
+    confirmPassword: false,
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,21 +52,46 @@ const RegistrationForm = () => {
         [name]: false
       }));
     }
+
+    // Special handling for confirm password
+    if (name === "confirmPassword" || name === "password") {
+      if (name === "confirmPassword" && value !== formData.password) {
+        setFieldValidation(prev => ({
+          ...prev,
+          confirmPassword: false
+        }));
+      } else if (name === "password" && formData.confirmPassword && value !== formData.confirmPassword) {
+        setFieldValidation(prev => ({
+          ...prev,
+          confirmPassword: false
+        }));
+      } else if (name === "confirmPassword" && value === formData.password) {
+        setFieldValidation(prev => ({
+          ...prev,
+          confirmPassword: true
+        }));
+      } else if (name === "password" && formData.confirmPassword && value === formData.confirmPassword) {
+        setFieldValidation(prev => ({
+          ...prev,
+          confirmPassword: true
+        }));
+      }
+    }
   };
 
-  const handleTypeChange = (type: string) => {
+  const handleTypeChange = (type: UserRole) => {
     setFormData((prev) => ({
       ...prev,
       userType: type,
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
     // Form validation
-    if (!formData.lastName || !formData.firstName || !formData.phone || !formData.location) {
+    if (!formData.lastName || !formData.firstName || !formData.phone || !formData.location || !formData.password) {
       toast.error("Veuillez remplir tous les champs obligatoires");
       setIsSubmitting(false);
       return;
@@ -70,17 +103,38 @@ const RegistrationForm = () => {
       return;
     }
 
-    // Here you would typically send the data to your backend
-    console.log("Submitting form data:", formData);
-    
-    // Simulate backend delay
-    setTimeout(() => {
-      // Show success toast and navigate to dashboard
-      toast.success("Inscription réussie ! Redirection vers votre tableau de bord.");
-      setTimeout(() => {
-        navigate("/dashboard");
-      }, 500);
-    }, 1000);
+    if (formData.password.length < 6) {
+      toast.error("Le mot de passe doit contenir au moins 6 caractères");
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (formData.password !== formData.confirmPassword) {
+      toast.error("Les mots de passe ne correspondent pas");
+      setIsSubmitting(false);
+      return;
+    }
+
+    try {
+      // Construct the user data
+      const userData = {
+        name: `${formData.firstName} ${formData.lastName}`,
+        phone: formData.phone,
+        email: formData.email || undefined,
+        location: formData.location,
+        role: formData.userType,
+      };
+
+      // Send to Supabase via Auth context
+      await signUp(userData, formData.password);
+      
+      // The redirect is handled in the signUp function
+    } catch (error) {
+      console.error("Error during registration:", error);
+      toast.error("Erreur lors de l'inscription. Veuillez réessayer.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const buttonVariants = {
@@ -88,6 +142,8 @@ const RegistrationForm = () => {
     hover: { scale: 1.02 },
     tap: { scale: 0.98 },
   };
+
+  const isLoading = isSubmitting || authLoading;
 
   return (
     <motion.div 
@@ -287,6 +343,58 @@ const RegistrationForm = () => {
         </div>
         
         <div>
+          <div className="relative">
+            <motion.input
+              type="password"
+              name="password"
+              id="password"
+              value={formData.password}
+              onChange={handleChange}
+              placeholder="Mot de passe"
+              className={`input-field ${fieldValidation.password ? "border-fertiloop-green" : ""}`}
+              required
+              whileFocus={{ scale: 1.01 }}
+              transition={{ duration: 0.2 }}
+            />
+            {fieldValidation.password && (
+              <motion.span 
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-fertiloop-green"
+              >
+                <Check size={16} />
+              </motion.span>
+            )}
+          </div>
+        </div>
+        
+        <div>
+          <div className="relative">
+            <motion.input
+              type="password"
+              name="confirmPassword"
+              id="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              placeholder="Confirmer le mot de passe"
+              className={`input-field ${fieldValidation.confirmPassword ? "border-fertiloop-green" : ""}`}
+              required
+              whileFocus={{ scale: 1.01 }}
+              transition={{ duration: 0.2 }}
+            />
+            {fieldValidation.confirmPassword && (
+              <motion.span 
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-fertiloop-green"
+              >
+                <Check size={16} />
+              </motion.span>
+            )}
+          </div>
+        </div>
+        
+        <div>
           <motion.button
             variants={buttonVariants}
             initial="initial"
@@ -294,9 +402,9 @@ const RegistrationForm = () => {
             whileTap="tap"
             type="submit"
             className="w-full btn-primary flex justify-center items-center"
-            disabled={isSubmitting}
+            disabled={isLoading}
           >
-            {isSubmitting ? (
+            {isLoading ? (
               <span className="flex items-center">
                 <Loader2 className="animate-spin mr-2 h-4 w-4" /> 
                 Inscription en cours...

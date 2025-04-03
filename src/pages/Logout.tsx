@@ -8,25 +8,27 @@ import { useAuth } from "@/hooks/useAuth";
 const Logout = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
-  const { signOut } = useAuth();
+  const { signOut, isLoading } = useAuth();
 
   useEffect(() => {
     const performLogout = async () => {
       try {
         // Use the signOut function from useAuth to properly handle logout
-        signOut();
+        await signOut();
         
         toast({
           title: "Déconnexion réussie",
           description: "Vous avez été déconnecté avec succès.",
         });
-        navigate("/login");
       } catch (error) {
+        console.error("Error during logout:", error);
         toast({
           title: "Erreur de déconnexion",
           description: "Un problème est survenu lors de la déconnexion.",
           variant: "destructive",
         });
+        // Redirect to login even if there's an error
+        navigate("/login");
       }
     };
 
