@@ -1,11 +1,10 @@
-
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import UserMenu from "./UserMenu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { Menu, Home, ShoppingBag, CreditCard, Truck, Bell } from "lucide-react";
+import { Menu, Home, ShoppingBag, CreditCard, Truck } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import NotificationBell from "../notifications/NotificationBell";
@@ -44,27 +43,28 @@ const Navbar = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-gray-200">
+    <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-sm border-b border-gray-200 shadow-sm">
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-14 sm:h-16">
-          <div className="flex items-center">
+        <div className="flex justify-between h-14 sm:h-16 items-center">
+          <div className="flex items-center space-x-4">
             <Link to="/" className="flex-shrink-0 flex items-center">
               <motion.div
-                className="flex items-center"
+                className="flex items-center bg-fertiloop-green/10 p-2 rounded-lg"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <img
-                  className="h-8 w-8 sm:h-10 sm:w-10 mr-1 sm:mr-2"
+                  className="h-6 w-6 sm:h-8 sm:w-8 mr-2"
                   src="/lovable-uploads/feb1c2b3-ac7e-4e36-8d99-075a7106d0fb.png"
                   alt="Fertiloop Logo"
                 />
-                <div className="flex flex-col">
-                  <span className="text-fertiloop-green font-bold text-base sm:text-xl">Fertiloop</span>
-                  <span className="text-fertiloop-green/70 text-xs hidden sm:inline">Closing the loop</span>
+                <div className="flex flex-col leading-tight">
+                  <span className="text-fertiloop-green font-bold text-sm sm:text-base">Fertiloop</span>
+                  <span className="text-fertiloop-green/70 text-[0.6rem] hidden sm:inline">Closing the loop</span>
                 </div>
               </motion.div>
             </Link>
+            
             <nav className="hidden md:ml-6 md:flex md:space-x-4 lg:space-x-8">
               {mainNavItems.map((item) => (
                 <Link
