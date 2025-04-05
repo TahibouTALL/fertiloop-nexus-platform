@@ -116,6 +116,34 @@ a:not(.btn):not(.nav-link):hover::after {
   transform-origin: bottom left;
 }
 
+/* Amélioration du logo */
+.logo-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+  padding: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.logo-container:hover {
+  transform: translateY(-2px);
+}
+
+.logo-text {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.logo-text span {
+  display: block;
+  font-size: 0.6rem;
+  font-weight: 400;
+  color: rgba(46, 109, 50, 0.8);
+}
+
 /* Styles responsive pour mobile */
 @media (max-width: 640px) {
   .container {
@@ -181,5 +209,72 @@ a:not(.btn):not(.nav-link):hover::after {
   
   .touch-scroll::-webkit-scrollbar {
     display: none; /* Chrome, Safari */
+  }
+}
+
+/* Amélioration des cartes */
+.collection-card {
+  transition: all 0.2s ease-in-out;
+  border-left: 4px solid transparent;
+}
+
+.collection-card-complete {
+  border-left-color: #2E6D32;
+}
+
+.collection-card-pending {
+  border-left-color: #F9A825;
+}
+
+.collection-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Styling pour les cartes de collecte dans la vue étendue */
+.collection-details {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.collection-details.expanded {
+  max-height: 500px;
+}
+
+/* Meilleure visualisation des points sur la carte */
+.map-marker {
+  position: relative;
+}
+
+.map-marker::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 8px solid currentColor;
+}
+
+.map-marker-pulse {
+  animation: map-marker-pulse 1.5s ease-out infinite;
+}
+
+@keyframes map-marker-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  70% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
   }
 }

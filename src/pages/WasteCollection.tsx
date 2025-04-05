@@ -1,11 +1,21 @@
 
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Calendar, Clock, Map, CheckCircle, Truck, AlertTriangle, ArrowLeft } from "lucide-react";
+import { Calendar, Clock, Map, CheckCircle, Truck, AlertTriangle, ArrowLeft, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
 import { toast } from "sonner";
+import { v4 as uuidv4 } from "uuid";
+import CollectionMap from "@/components/collection/CollectionMap";
+
+interface CollectionPoint {
+  id: string;
+  position: { lat: number; lng: number };
+  title: string;
+  address: string;
+  type: 'collection' | 'delivery';
+}
 
 const collectionRequests = [
   {
@@ -31,6 +41,24 @@ const collectionRequests = [
   },
 ];
 
+// Points de collecte initiaux
+const initialCollectionPoints: CollectionPoint[] = [
+  {
+    id: uuidv4(),
+    position: { lat: 14.7167, lng: -17.4677 },
+    title: "Centre de collecte Dakar",
+    address: "123 Rue Principale, Dakar",
+    type: "collection"
+  },
+  {
+    id: uuidv4(),
+    position: { lat: 14.7505, lng: -17.3880 },
+    title: "Point de dépôt Parcelles Assainies",
+    address: "45 Avenue de la Paix, Parcelles Assainies",
+    type: "collection"
+  }
+];
+
 const RequestStatus = ({ status }: { status: string }) => {
   if (status === "scheduled") {
     return (
@@ -54,9 +82,12 @@ const WasteCollection = () => {
     containerCount: 1,
     preferredDate: "",
     notes: "",
+    useMap: false,
   });
 
   const [requestSubmitted, setRequestSubmitted] = useState(false);
+  const [collectionPoints, setCollectionPoints] = useState<CollectionPoint[]>(initialCollectionPoints);
+  const [activeTab, setActiveTab] = useState<'form' | 'map'>('form');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -72,6 +103,7 @@ const WasteCollection = () => {
         containerCount: 1,
         preferredDate: "",
         notes: "",
+        useMap: false,
       });
     }, 3000);
   };
@@ -82,6 +114,28 @@ const WasteCollection = () => {
       ...prev,
       [name]: value,
     }));
+  };
+
+  const handleAddCollectionPoint = (point: Omit<CollectionPoint, 'id'>) => {
+    const newPoint = {
+      ...point,
+      id: uuidv4(),
+      title: "Nouveau point de collecte"
+    };
+    
+    setCollectionPoints(prev => [...prev, newPoint]);
+    
+    // Mettre à jour l'adresse dans le formulaire
+    if (activeTab === 'map') {
+      setFormState(prev => ({
+        ...prev,
+        address: point.address,
+        useMap: true
+      }));
+      
+      // Basculer vers l'onglet du formulaire
+      setActiveTab('form');
+    }
   };
 
   return (
@@ -112,9 +166,31 @@ const WasteCollection = () => {
             <div className="lg:col-span-2">
               <Card>
                 <CardHeader className="border-b border-gray-200">
-                  <div className="flex items-center">
-                    <Truck className="h-5 w-5 text-fertiloop-green mr-2" />
-                    <CardTitle>Demander une collecte</CardTitle>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center">
+                      <Truck className="h-5 w-5 text-fertiloop-green mr-2" />
+                      <CardTitle>Demander une collecte</CardTitle>
+                    </div>
+                    <div className="flex gap-2">
+                      <Button 
+                        variant={activeTab === 'form' ? "default" : "outline"} 
+                        size="sm"
+                        onClick={() => setActiveTab('form')}
+                        className="gap-2"
+                      >
+                        <Calendar className="h-4 w-4" />
+                        Formulaire
+                      </Button>
+                      <Button 
+                        variant={activeTab === 'map' ? "default" : "outline"}
+                        size="sm"
+                        onClick={() => setActiveTab('map')}
+                        className="gap-2"
+                      >
+                        <MapPin className="h-4 w-4" />
+                        Carte
+                      </Button>
+                    </div>
                   </div>
                 </CardHeader>
                 <CardContent className="pt-6">
@@ -130,6 +206,18 @@ const WasteCollection = () => {
                         Votre demande de collecte a été enregistrée. Vous recevrez une confirmation prochainement.
                       </p>
                     </div>
+                  ) : activeTab === 'map' ? (
+                    <div className="space-y-4">
+                      <p className="text-sm text-muted-foreground mb-2">
+                        Cliquez sur la carte pour définir votre point de collecte. 
+                        L'adresse sera automatiquement détectée et ajoutée à votre demande.
+                      </p>
+                      <CollectionMap 
+                        height="500px"
+                        points={collectionPoints}
+                        onAddPoint={handleAddCollectionPoint}
+                      />
+                    </div>
                   ) : (
                     <form onSubmit={handleSubmit} className="space-y-6">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -140,16 +228,27 @@ const WasteCollection = () => {
                           >
                             Adresse complète
                           </label>
-                          <input
-                            type="text"
-                            id="address"
-                            name="address"
-                            value={formState.address}
-                            onChange={handleInputChange}
-                            required
-                            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-fertiloop-green focus:border-transparent"
-                            placeholder="Entrez l'adresse de collecte"
-                          />
+                          <div className="relative">
+                            <input
+                              type="text"
+                              id="address"
+                              name="address"
+                              value={formState.address}
+                              onChange={handleInputChange}
+                              required
+                              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-fertiloop-green focus:border-transparent"
+                              placeholder="Entrez l'adresse de collecte"
+                            />
+                            <Button
+                              type="button"
+                              variant="ghost"
+                              size="sm"
+                              className="absolute right-1 top-1 text-gray-500"
+                              onClick={() => setActiveTab('map')}
+                            >
+                              <MapPin className="h-4 w-4" />
+                            </Button>
+                          </div>
                         </div>
 
                         <div className="space-y-2">
@@ -245,12 +344,20 @@ const WasteCollection = () => {
                 <CardHeader className="border-b border-gray-200">
                   <div className="flex items-center">
                     <Calendar className="h-5 w-5 text-fertiloop-green mr-2" />
-                    <CardTitle>Historique des collectes</CardTitle>
+                    <CardTitle>Points de collecte</CardTitle>
                   </div>
                 </CardHeader>
                 <CardContent className="pt-6">
-                  {collectionRequests.length > 0 ? (
+                  {collectionPoints.length > 0 ? (
                     <div className="space-y-6">
+                      <div className="mb-4">
+                        <CollectionMap 
+                          height="200px"
+                          points={collectionPoints}
+                          interactive={false}
+                        />
+                      </div>
+                      <h3 className="font-medium text-gray-900 mb-3">Historique des demandes</h3>
                       {collectionRequests.map((request) => (
                         <div
                           key={request.id}
@@ -285,7 +392,9 @@ const WasteCollection = () => {
                   )}
                   <div className="mt-4 pt-4 border-t border-gray-100">
                     <Button variant="outline" className="w-full">
-                      Voir toutes les collectes
+                      <Link to="/collection-tracking" className="w-full flex justify-center items-center">
+                        Voir le suivi des collectes
+                      </Link>
                     </Button>
                   </div>
                 </CardContent>
