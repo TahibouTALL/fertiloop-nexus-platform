@@ -6,7 +6,7 @@ import { SidebarProvider } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Home, TruckIcon, Leaf, DollarSign, Droplet, LifeBuoy, MapPin } from "lucide-react";
-import { useMediaQuery } from "@/hooks/use-mobile";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface DashboardLayoutProps {
   children: ReactNode;
@@ -15,7 +15,7 @@ interface DashboardLayoutProps {
 const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const isMobile = useMediaQuery("(max-width: 768px)");
+  const isMobile = useIsMobile();
   
   const menuItems = [
     { icon: Home, label: "Tableau de bord", path: "/dashboard" },
@@ -30,7 +30,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
   return (
     <SidebarProvider>
       <div className="min-h-screen flex w-full">
-        <Sidebar defaultCollapsed={isMobile}>
+        <Sidebar>
           <SidebarHeader className="border-b px-4 py-4">
             <div className="flex items-center gap-2">
               <div className="h-8 w-8 rounded-full bg-white shadow-sm border border-gray-100 flex items-center justify-center">
