@@ -6,6 +6,7 @@ import { SidebarProvider } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Home, TruckIcon, Leaf, DollarSign, Droplet, LifeBuoy, MapPin } from "lucide-react";
+import { useMediaQuery } from "@/hooks/use-mobile";
 
 interface DashboardLayoutProps {
   children: ReactNode;
@@ -14,6 +15,7 @@ interface DashboardLayoutProps {
 const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const isMobile = useMediaQuery("(max-width: 768px)");
   
   const menuItems = [
     { icon: Home, label: "Tableau de bord", path: "/dashboard" },
@@ -28,11 +30,11 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
   return (
     <SidebarProvider>
       <div className="min-h-screen flex w-full">
-        <Sidebar>
-          <SidebarHeader className="border-b px-6 py-5">
+        <Sidebar defaultCollapsed={isMobile}>
+          <SidebarHeader className="border-b px-4 py-4">
             <div className="flex items-center gap-2">
-              <div className="h-8 w-8 rounded-full bg-primary flex items-center justify-center">
-                <Leaf className="h-4 w-4 text-white" />
+              <div className="h-8 w-8 rounded-full bg-white shadow-sm border border-gray-100 flex items-center justify-center">
+                <Leaf className="h-4 w-4 text-fertiloop-green" />
               </div>
               <span className="font-semibold text-lg">Fertiloop</span>
             </div>
@@ -43,15 +45,15 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
                 <Button
                   key={item.path}
                   variant={location.pathname === item.path ? "default" : "ghost"}
-                  className={`w-full justify-start gap-2 ${
+                  className={`w-full justify-start gap-2 h-auto py-2.5 ${
                     location.pathname === item.path
                       ? ""
                       : "text-muted-foreground hover:text-foreground"
                   }`}
                   onClick={() => navigate(item.path)}
                 >
-                  <item.icon className="h-4 w-4" />
-                  {item.label}
+                  <item.icon className="h-4 w-4 flex-shrink-0" />
+                  <span className="truncate">{item.label}</span>
                 </Button>
               ))}
             </div>
@@ -65,7 +67,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
         
         <div className="flex-1 flex flex-col">
           <Navbar />
-          <main className="flex-1 p-6 overflow-auto">
+          <main className="flex-1 p-3 sm:p-6 overflow-auto">
             {children}
           </main>
         </div>

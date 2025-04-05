@@ -58,6 +58,7 @@ body {
   background-image: linear-gradient(to bottom right, rgba(245, 243, 230, 0.5), rgba(255, 255, 255, 0.8));
   background-attachment: fixed;
   overflow-x: hidden; /* Empêche le défilement horizontal sur mobile */
+  -webkit-tap-highlight-color: transparent; /* Supprime le flash bleu sur tap pour iOS */
 }
 
 /* Animation de fade-in pour les éléments qui apparaissent */
@@ -130,5 +131,55 @@ a:not(.btn):not(.nav-link):hover::after {
   /* Amélioration des zones cliquables pour le toucher */
   .nav-link, .btn, button {
     padding: 0.5rem 0.75rem;
+    min-height: 44px; /* Taille minimale recommandée pour zones tactiles */
+  }
+  
+  /* Éviter que le texte ne soit trop petit sur mobile */
+  body {
+    font-size: 16px;
+  }
+  
+  /* Amélioration de l'espacement des éléments interactifs */
+  .touch-target {
+    margin: 0.5rem 0;
+  }
+}
+
+/* Améliorations visuelles pour les éléments de navigation */
+.nav-item {
+  position: relative;
+  isolation: isolate;
+}
+
+.nav-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 0.5rem;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.nav-item:active::before {
+  opacity: 0.1;
+  background-color: currentColor;
+}
+
+/* Amélioration pour les éléments de la navbar */
+.navbar-icon {
+  filter: drop-shadow(0 1px 1px rgba(0,0,0,0.1));
+}
+
+/* Améliorations pour l'accessibilité mobile */
+@media (hover: none) {
+  /* Ces styles ne s'appliquent que sur appareils tactiles */
+  .touch-scroll {
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+  }
+  
+  .touch-scroll::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
   }
 }

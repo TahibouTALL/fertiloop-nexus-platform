@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -43,22 +44,22 @@ const Navbar = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-sm border-b border-gray-200 shadow-sm">
+    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm">
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-14 sm:h-16 items-center">
-          <div className="flex items-center space-x-4">
+        <div className="flex justify-between h-16 items-center">
+          <div className="flex items-center space-x-2 sm:space-x-4">
             <Link to="/" className="flex-shrink-0 flex items-center">
               <motion.div
-                className="flex items-center bg-fertiloop-green/10 p-2 rounded-lg"
+                className="flex items-center bg-white shadow-sm rounded-lg p-2 border border-gray-50"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <img
-                  className="h-6 w-6 sm:h-8 sm:w-8 mr-2"
+                  className="h-6 w-6 sm:h-7 sm:w-7 mr-1.5 sm:mr-2"
                   src="/lovable-uploads/feb1c2b3-ac7e-4e36-8d99-075a7106d0fb.png"
                   alt="Fertiloop Logo"
                 />
-                <div className="flex flex-col leading-tight">
+                <div className="flex flex-col leading-none">
                   <span className="text-fertiloop-green font-bold text-sm sm:text-base">Fertiloop</span>
                   <span className="text-fertiloop-green/70 text-[0.6rem] hidden sm:inline">Closing the loop</span>
                 </div>
@@ -96,25 +97,31 @@ const Navbar = () => {
             </nav>
           </div>
           
-          <div className="flex items-center gap-1 sm:gap-2">
-            <NotificationBell />
-            <UserMenu />
+          <div className="flex items-center gap-3 sm:gap-4">
+            <div className="relative">
+              <NotificationBell />
+            </div>
+            <div className="relative">
+              <UserMenu />
+            </div>
             
             <div className="flex md:hidden">
               <Sheet open={isOpen} onOpenChange={setIsOpen}>
                 <SheetTrigger asChild>
-                  <Button variant="ghost" size="icon" className="h-9 w-9">
+                  <Button variant="ghost" size="icon" className="h-10 w-10 ml-1">
                     <Menu className="h-5 w-5" />
                   </Button>
                 </SheetTrigger>
                 <SheetContent side="right" className="p-0 w-[280px] sm:w-[350px]">
                   <nav className="flex flex-col gap-2 mt-4">
                     <div className="flex items-center mb-4 border-b pb-4 px-4">
-                      <img
-                        className="h-8 w-8 mr-2"
-                        src="/lovable-uploads/4eb1fc11-5e7f-4cdd-a755-9dffd17d3b51.png"
-                        alt="Fertiloop Logo"
-                      />
+                      <div className="bg-white p-2 rounded-lg shadow-sm mr-2">
+                        <img
+                          className="h-8 w-8"
+                          src="/lovable-uploads/feb1c2b3-ac7e-4e36-8d99-075a7106d0fb.png"
+                          alt="Fertiloop Logo"
+                        />
+                      </div>
                       <div className="flex flex-col">
                         <span className="text-fertiloop-green font-bold text-lg">Fertiloop</span>
                         <span className="text-fertiloop-green/70 text-xs">Closing the loop</span>
