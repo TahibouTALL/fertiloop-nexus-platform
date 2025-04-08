@@ -34,3 +34,31 @@
     display: none;
   }
 }
+
+/* Layout helper classes */
+.section-padding {
+  @apply py-10 md:py-16 px-4 md:px-8 lg:px-12;
+}
+
+.full-width {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+.center-content {
+  @apply flex items-center justify-center;
+}
+
+/* Spacing utilities */
+.stack > * + * {
+  margin-top: var(--stack-spacing, 1rem);
+}
+
+.cluster {
+  @apply flex flex-wrap;
+  gap: var(--cluster-gap, 1rem);
+}
