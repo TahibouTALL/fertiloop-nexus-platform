@@ -1,0 +1,36 @@
+
+@media (max-width: 640px) {
+  .container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  
+  h1, h2, h3 {
+    word-wrap: break-word;
+    hyphens: auto;
+  }
+  
+  .nav-link, .btn, button {
+    padding: 0.5rem 0.75rem;
+    min-height: 44px;
+  }
+  
+  body {
+    font-size: 16px;
+  }
+  
+  .touch-target {
+    margin: 0.75rem 0;
+  }
+}
+
+@media (hover: none) {
+  .touch-scroll {
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  
+  .touch-scroll::-webkit-scrollbar {
+    display: none;
+  }
+}

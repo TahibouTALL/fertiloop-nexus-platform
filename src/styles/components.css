@@ -1,0 +1,37 @@
+
+@layer components {
+  .feature-card {
+    @apply flex flex-col items-center p-4 sm:p-6 rounded-xl bg-white border border-gray-100 shadow-sm transition-all hover:shadow-md hover:bg-gray-50;
+  }
+
+  .nav-link {
+    @apply px-2 sm:px-4 py-2 text-sm font-medium rounded-md hover:bg-fertiloop-green/10 text-fertiloop-green-dark;
+  }
+
+  .btn-primary {
+    @apply bg-fertiloop-blue text-white px-4 py-2 sm:px-6 sm:py-3 rounded-lg font-medium transition-colors hover:bg-fertiloop-blue-dark shadow-sm;
+  }
+
+  .btn-secondary {
+    @apply bg-fertiloop-gray-dark text-fertiloop-green-dark px-4 py-2 sm:px-6 sm:py-3 rounded-lg font-medium transition-colors hover:bg-fertiloop-gray shadow-sm;
+  }
+
+  .input-field {
+    @apply w-full px-3 py-2 sm:px-4 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-fertiloop-green focus:border-transparent bg-white/90;
+  }
+
+  .logo-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    padding: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .dashboard-card {
+    @apply p-4 sm:p-6 rounded-xl border bg-white shadow-sm hover:shadow-md transition-all hover:bg-gray-50;
+  }
+}
