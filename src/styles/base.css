@@ -13,6 +13,10 @@
     -webkit-tap-highlight-color: transparent;
   }
 
+  .dark body {
+    background-image: linear-gradient(to bottom right, rgba(30, 35, 30, 0.8), rgba(20, 20, 20, 1));
+  }
+
   h1, h2, h3, h4, h5, h6 {
     @apply font-semibold tracking-tight;
   }
