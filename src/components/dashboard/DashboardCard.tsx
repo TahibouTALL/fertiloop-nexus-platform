@@ -21,18 +21,18 @@ const DashboardCard = ({
   const content = (
     <div className="dashboard-card">
       <div className="flex items-start">
-        <div className="flex-shrink-0 bg-fertiloop-green/10 p-3 rounded-full">
+        <div className="flex-shrink-0 bg-primary/10 p-3 rounded-full">
           {icon}
         </div>
         <div className="ml-4 flex-1">
-          <h3 className="text-lg font-medium text-gray-900">{title}</h3>
-          {description && <p className="mt-1 text-sm text-gray-500">{description}</p>}
+          <h3 className="text-lg font-medium text-foreground">{title}</h3>
+          {description && <p className="mt-1 text-sm text-muted-foreground">{description}</p>}
         </div>
       </div>
       {children && <div className="mt-4">{children}</div>}
       {link && (
         <div className="mt-4 text-right">
-          <ArrowRight className="inline-block ml-1 h-4 w-4" />
+          <ArrowRight className="inline-block ml-1 h-4 w-4 text-primary" />
         </div>
       )}
     </div>
