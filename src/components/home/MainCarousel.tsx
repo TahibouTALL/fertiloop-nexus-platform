@@ -84,7 +84,7 @@ const MainCarousel: React.FC = () => {
       } else {
         api.scrollTo(0);
       }
-    }, 3000); // Réduction du temps d'interval de 5000 à 3000 ms
+    }, 3000);
 
     return () => {
       api.off("select", handleSelect);
@@ -93,7 +93,7 @@ const MainCarousel: React.FC = () => {
   }, [api]);
 
   return (
-    <div className="relative w-full bg-fertiloop-beige-dark">
+    <div className="relative w-full bg-gradient-to-b from-fertiloop-beige-dark to-fertiloop-beige-light">
       <Carousel
         className="w-full"
         opts={{
@@ -105,26 +105,26 @@ const MainCarousel: React.FC = () => {
         <CarouselContent className="h-[500px] md:h-[650px]">
           {carouselImages.map((image, index) => (
             <CarouselItem key={index} className="relative pl-0">
-              <div className="relative w-full h-full overflow-hidden">
+              <div className="relative w-full h-full overflow-hidden rounded-xl shadow-lg">
                 <div className="w-full h-full flex items-center justify-center">
                   <img
                     src={image.src}
                     alt={image.alt}
-                    className="w-auto h-full max-h-full object-contain"
+                    className="w-auto h-full max-h-full object-contain transition-transform duration-300 hover:scale-105"
                   />
                   {/* Overlay with gradient for better text readability */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#1B2B1A]/60 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1B2B1A]/80 to-transparent" />
                   <div className="absolute bottom-0 left-0 w-full p-6 md:p-10 z-10">
                     <motion.div
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: current === index ? 1 : 0, y: current === index ? 0 : 20 }}
                       transition={{ duration: 0.5 }}
                     >
-                      <h2 className="text-2xl md:text-4xl font-bold text-white mb-2 text-shadow">{image.heading}</h2>
+                      <h2 className="text-3xl md:text-5xl font-bold text-white mb-2 text-shadow">{image.heading}</h2>
                       <p className="text-white text-lg md:text-xl mb-6 max-w-xl text-shadow-sm">{image.description}</p>
                       {image.buttonText && image.buttonLink && (
                         <Link to={image.buttonLink}>
-                          <Button className="bg-fertiloop-green-dark hover:bg-fertiloop-green text-white shadow-md transition-all duration-300 transform hover:scale-105">
+                          <Button className="bg-fertiloop-green hover:bg-fertiloop-green-dark text-white shadow-lg transition-all duration-300 transform hover:scale-105 hover:translate-y-[-2px]">
                             {image.buttonText}
                             <ArrowRight className="ml-2 h-4 w-4" />
                           </Button>
@@ -138,12 +138,12 @@ const MainCarousel: React.FC = () => {
           ))}
         </CarouselContent>
 
-        <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-10">
+        <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-2 z-10">
           {carouselImages.map((_, index) => (
             <button
               key={index}
-              className={`h-2 rounded-full transition-all ${
-                index === current ? "w-8 bg-fertiloop-green-light" : "w-2 bg-white/60"
+              className={`h-3 rounded-full transition-all ${
+                index === current ? "w-10 bg-fertiloop-green shadow-md" : "w-3 bg-white/60"
               }`}
               onClick={() => api?.scrollTo(index)}
               aria-label={`Go to slide ${index + 1}`}
@@ -152,8 +152,8 @@ const MainCarousel: React.FC = () => {
         </div>
 
         <div className="hidden md:block z-20">
-          <CarouselPrevious className="absolute left-4 top-1/2 h-10 w-10 -translate-y-1/2 bg-black/40 hover:bg-fertiloop-green-dark border-none text-white shadow-lg z-20" />
-          <CarouselNext className="absolute right-4 top-1/2 h-10 w-10 -translate-y-1/2 bg-black/40 hover:bg-fertiloop-green-dark border-none text-white shadow-lg z-20" />
+          <CarouselPrevious className="absolute left-4 top-1/2 h-12 w-12 -translate-y-1/2 bg-black/30 hover:bg-fertiloop-green border-none text-white shadow-xl z-20 transition-all duration-300 hover:scale-110" />
+          <CarouselNext className="absolute right-4 top-1/2 h-12 w-12 -translate-y-1/2 bg-black/30 hover:bg-fertiloop-green border-none text-white shadow-xl z-20 transition-all duration-300 hover:scale-110" />
         </div>
       </Carousel>
     </div>
