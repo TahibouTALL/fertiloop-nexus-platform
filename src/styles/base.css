@@ -14,7 +14,7 @@
   }
 
   .dark body {
-    background-image: linear-gradient(to bottom right, rgba(30, 35, 30, 0.8), rgba(20, 20, 20, 1));
+    background-image: linear-gradient(to bottom right, rgba(20, 25, 20, 0.8), rgba(10, 10, 10, 1));
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -42,5 +42,14 @@
 
   a:hover {
     color: var(--color-fertiloop-green-dark);
+  }
+
+  /* Dark mode specific styles */
+  .dark .dashboard-card {
+    @apply bg-card/60 border-border/50;
+  }
+
+  .dark .input-field {
+    @apply bg-background/80 border-input/70;
   }
 }

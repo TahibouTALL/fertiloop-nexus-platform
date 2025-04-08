@@ -4,6 +4,8 @@
   --color-fertiloop-green: #2E6D32;
   --color-fertiloop-green-dark: #1B5E20;
   --color-fertiloop-green-light: rgba(46, 109, 50, 0.8);
+  --color-fertiloop-yellow: #FFC107;
+  --color-fertiloop-yellow-light: #FFECB3;
   --color-fertiloop-blue: #1EAEDB;
   --color-fertiloop-blue-dark: #0FA0CE;
   --color-fertiloop-gray: #F6F6F7;
@@ -54,7 +56,7 @@
   --card-foreground: 0 0% 98%;
   --popover: 240 10% 3.9%;
   --popover-foreground: 0 0% 98%;
-  --primary: 142 44% 30%;
+  --primary: 142 44% 40%;
   --primary-foreground: 0 0% 98%;
   --secondary: 240 3.7% 15.9%;
   --secondary-foreground: 0 0% 98%;
@@ -66,12 +68,14 @@
   --destructive-foreground: 0 0% 98%;
   --border: 240 3.7% 15.9%;
   --input: 240 3.7% 15.9%;
-  --ring: 142 44% 30%;
+  --ring: 142 44% 40%;
 
   /* Dark mode specific colors */
   --color-fertiloop-green: #4CAF50;
   --color-fertiloop-green-dark: #2E6D32;
   --color-fertiloop-green-light: rgba(76, 175, 80, 0.8);
+  --color-fertiloop-yellow: #FFD54F;
+  --color-fertiloop-yellow-light: #FFF8E1;
   --color-fertiloop-blue: #29B6E3;
   --color-fertiloop-blue-dark: #1EAEDB;
   --color-fertiloop-gray: #222222;

@@ -3,6 +3,7 @@ import React from "react";
 import { Moon, Sun } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { useTheme } from "@/context/ThemeContext";
+import { toast } from "sonner";
 
 interface ThemeToggleProps {
   label?: boolean;
@@ -16,7 +17,9 @@ export const ThemeToggle = ({
   const { theme, setTheme } = useTheme();
   
   const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    toast.success(`Mode ${newTheme === "light" ? "clair" : "sombre"} activé`);
   };
 
   return (
@@ -38,7 +41,7 @@ export const ThemeToggle = ({
         </div>
       )}
       <div className="flex items-center gap-2">
-        <Sun className={`h-4 w-4 ${theme === 'light' ? 'text-fertiloop-yellow dark:text-fertiloop-yellow-light' : 'text-muted-foreground'}`} />
+        <Sun className={`h-4 w-4 ${theme === 'light' ? 'text-amber-500' : 'text-muted-foreground'}`} />
         <Switch
           checked={theme === "dark"}
           onCheckedChange={toggleTheme}
