@@ -1,23 +1,29 @@
+
 @layer base {
   * {
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
-    background-image: linear-gradient(to bottom right, rgba(20, 25, 20, 0.8), rgba(10, 10, 10, 1));
+    background-image: linear-gradient(to bottom right, hsl(var(--background)), hsl(230 20% 4%));
     background-attachment: fixed;
     overflow-x: hidden;
     -webkit-tap-highlight-color: transparent;
+    min-height: 100vh;
   }
 
   .dark body {
-    background-image: linear-gradient(to bottom right, rgba(20, 25, 20, 0.8), rgba(10, 10, 10, 1));
+    background-image: linear-gradient(to bottom right, hsl(230 15% 8%), hsl(230 20% 4%));
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-semibold tracking-tight;
+    @apply font-semibold tracking-tight text-foreground;
   }
 
   h1 {
@@ -33,22 +39,52 @@
   }
   
   a {
-    color: var(--color-fertiloop-green);
-    text-decoration: none;
-    position: relative;
-    transition: color var(--transition-default);
+    @apply text-primary relative transition-colors duration-200;
   }
 
   a:hover {
-    color: var(--color-fertiloop-green-dark);
+    @apply text-primary/90;
+  }
+
+  /* Custom scrollbar for dark mode */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-background/50;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary/30 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary/50;
   }
 
   /* Dark mode specific styles */
   .dark .dashboard-card {
-    @apply bg-card/60 border-border/50;
+    @apply bg-card/60 border-border/30 backdrop-blur-sm;
   }
 
   .dark .input-field {
     @apply bg-background/80 border-input/70;
+  }
+  
+  /* Elegant focus styles */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-primary/30 ring-offset-2 ring-offset-background;
+  }
+  
+  /* Accessibility improvements */
+  [data-focus-visible-added] {
+    @apply outline-none ring-2 ring-primary/30;
+  }
+  
+  /* Selection styling */
+  ::selection {
+    @apply bg-primary/20 text-foreground;
   }
 }

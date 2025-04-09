@@ -8,20 +8,26 @@ type ThemeContextType = {
   setTheme: (theme: Theme) => void;
 };
 
+interface ThemeProviderProps {
+  children: React.ReactNode;
+  defaultTheme?: Theme;
+}
+
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-export function ThemeProvider({ children }: { children: React.ReactNode }) {
+export function ThemeProvider({ children, defaultTheme = "dark" }: ThemeProviderProps) {
   const [theme, setTheme] = useState<Theme>(() => {
     // Check if theme is stored in localStorage
     if (typeof window !== 'undefined') {
       const savedTheme = localStorage.getItem('theme') as Theme;
       // Check system preference if no saved theme
       if (!savedTheme) {
-        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        return defaultTheme || 
+          (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
       }
-      return savedTheme || 'light';
+      return savedTheme || defaultTheme;
     }
-    return 'light';
+    return defaultTheme;
   });
 
   useEffect(() => {
@@ -33,8 +39,14 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     
     if (theme === 'dark') {
       root.classList.add('dark');
+      root.classList.remove('light');
+      document.body.classList.add('dark-theme');
+      document.body.classList.remove('light-theme');
     } else {
       root.classList.remove('dark');
+      root.classList.add('light');
+      document.body.classList.remove('dark-theme');
+      document.body.classList.add('light-theme');
     }
   }, [theme]);
 

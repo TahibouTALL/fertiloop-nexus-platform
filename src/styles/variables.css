@@ -6,50 +6,62 @@
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
   --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.4);
 
-  /* Brand specific colors */
-  --color-fertiloop-green: #4CAF50;
-  --color-fertiloop-green-dark: #2E6D32;
-  --color-fertiloop-green-light: rgba(76, 175, 80, 0.8);
-  --color-fertiloop-yellow: #FFD54F;
+  /* Brand specific colors - darker, more elegant palette */
+  --color-fertiloop-green: #2E7D32;
+  --color-fertiloop-green-dark: #1B5E20;
+  --color-fertiloop-green-light: rgba(46, 125, 50, 0.8);
+  --color-fertiloop-yellow: #FFC107;
   --color-fertiloop-yellow-light: #FFF8E1;
-  --color-fertiloop-blue: #29B6E3;
-  --color-fertiloop-blue-dark: #1EAEDB;
-  --color-fertiloop-gray: #222222;
-  --color-fertiloop-gray-dark: #161616;
+  --color-fertiloop-blue: #1E88E5;
+  --color-fertiloop-blue-dark: #0D47A1;
+  --color-fertiloop-gray: #121212;
+  --color-fertiloop-gray-dark: #0A0A0A;
+  
+  /* New elegant accent colors */
+  --color-fertiloop-purple: #673AB7;
+  --color-fertiloop-purple-dark: #4527A0;
+  --color-fertiloop-teal: #009688;
+  --color-fertiloop-amber: #FFB300;
+  --color-fertiloop-coral: #FF7043;
 }
 
-/* Dark theme variables */
+/* Dark theme as default */
 :root {
   /* Semantic colors for dark theme */
-  --background: 240 10% 3.9%;
-  --foreground: 0 0% 98%;
+  --background: 230 15% 7%;
+  --foreground: 210 20% 98%;
   
   /* Card and container styles */
-  --card: 240 10% 3.9%;
-  --card-foreground: 0 0% 98%;
-  --popover: 240 10% 3.9%;
-  --popover-foreground: 0 0% 98%;
+  --card: 230 15% 10%;
+  --card-foreground: 210 20% 98%;
+  --popover: 230 15% 9%;
+  --popover-foreground: 210 20% 98%;
   
   /* Interactive colors */
-  --primary: 142 44% 40%;
+  --primary: 142 44% 30%;
   --primary-foreground: 0 0% 98%;
-  --secondary: 240 3.7% 15.9%;
-  --secondary-foreground: 0 0% 98%;
+  --secondary: 230 15% 15%;
+  --secondary-foreground: 210 20% 98%;
   
   /* Supporting colors */
-  --muted: 240 3.7% 15.9%;
-  --muted-foreground: 240 5% 64.9%;
-  --accent: 240 3.7% 15.9%;
-  --accent-foreground: 0 0% 98%;
+  --muted: 230 15% 15%;
+  --muted-foreground: 240 5% 75%;
+  --accent: 230 15% 15%;
+  --accent-foreground: 210 20% 98%;
   
   /* Functional colors */
   --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 0 0% 98%;
+  --destructive-foreground: 210 20% 98%;
   
   /* Form and border colors */
-  --border: 240 3.7% 15.9%;
-  --input: 240 3.7% 15.9%;
-  --ring: 240 4.9% 83.9%;
+  --border: 230 15% 18%;
+  --input: 230 15% 18%;
+  --ring: 142 44% 30%;
+  
+  /* Dark theme shadows with glow effects */
+  --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.3), 0 0 10px rgba(46, 125, 50, 0.1);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 15px rgba(46, 125, 50, 0.15);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 20px rgba(46, 125, 50, 0.2);
 }
 
 /* Media query for light theme preferences */
@@ -133,29 +145,29 @@
 }
 
 .dark-theme {
-  /* Dark theme colors - explicit class for when the user selects dark mode regardless of system preferences */
-  --background: 240 10% 3.9%;
-  --foreground: 0 0% 98%;
-  --card: 240 10% 3.9%;
-  --card-foreground: 0 0% 98%;
-  --popover: 240 10% 3.9%;
-  --popover-foreground: 0 0% 98%;
-  --primary: 142 44% 40%;
-  --primary-foreground: 0 0% 98%;
-  --secondary: 240 3.7% 15.9%;
-  --secondary-foreground: 0 0% 98%;
-  --muted: 240 3.7% 15.9%;
-  --muted-foreground: 240 5% 64.9%;
-  --accent: 240 3.7% 15.9%;
-  --accent-foreground: 0 0% 98%;
+  /* Dark theme colors - explicit class */
+  --background: 230 15% 7%;
+  --foreground: 210 20% 98%;
+  --card: 230 15% 10%;
+  --card-foreground: 210 20% 98%;
+  --popover: 230 15% 9%;
+  --popover-foreground: 210 20% 98%;
+  --primary: 142 44% 30%;
+  --primary-foreground: 210 20% 98%;
+  --secondary: 230 15% 15%;
+  --secondary-foreground: 210 20% 98%;
+  --muted: 230 15% 15%;
+  --muted-foreground: 240 5% 75%;
+  --accent: 230 15% 15%;
+  --accent-foreground: 210 20% 98%;
   --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 0 0% 98%;
-  --border: 240 3.7% 15.9%;
-  --input: 240 3.7% 15.9%;
-  --ring: 240 4.9% 83.9%;
+  --destructive-foreground: 210 20% 98%;
+  --border: 230 15% 18%;
+  --input: 230 15% 18%;
+  --ring: 142 44% 30%;
   
-  /* Dark theme shadows remain the same as root */
-  --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.2);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
-  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.4);
+  /* Enhanced shadows with subtle glow */
+  --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.3), 0 0 10px rgba(46, 125, 50, 0.1);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 15px rgba(46, 125, 50, 0.15);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 20px rgba(46, 125, 50, 0.2);
 }

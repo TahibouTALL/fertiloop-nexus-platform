@@ -1,7 +1,7 @@
 
-/* Styles de décorations pour l'application Fertiloop */
+/* Elegant decorations for dark-themed Fertiloop application */
 
-/* Éléments de décoration flottants */
+/* Floating decoration elements */
 .floating-decoration {
   position: absolute;
   pointer-events: none;
@@ -17,7 +17,7 @@
 
 .floating-decoration-circle {
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
+  background: radial-gradient(circle, rgba(46, 125, 50, 0.2) 0%, rgba(10, 61, 10, 0) 70%);
   animation: pulse 6s ease-in-out infinite;
 }
 
@@ -29,7 +29,7 @@
   animation: pulse 4s ease-in-out infinite;
 }
 
-/* Éléments décoratifs de fond */
+/* Background decorative elements */
 .bg-decoration {
   position: absolute;
   inset: 0;
@@ -42,31 +42,39 @@
   background-image: linear-gradient(to right, var(--color-fertiloop-green-light) 1px, transparent 1px),
                     linear-gradient(to bottom, var(--color-fertiloop-green-light) 1px, transparent 1px);
   background-size: 24px 24px;
-  opacity: 0.1;
+  opacity: 0.05;
 }
 
 .bg-pattern-dots {
   background-image: radial-gradient(var(--color-fertiloop-green-light) 1px, transparent 1px);
   background-size: 20px 20px;
-  opacity: 0.1;
+  opacity: 0.05;
 }
 
+/* Glass morphism effects for dark theme */
 .frosted-glass {
   backdrop-filter: blur(8px);
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+  background: rgba(18, 18, 18, 0.4);
+  border: 1px solid rgba(46, 125, 50, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+}
+
+.frosted-glass-green {
+  backdrop-filter: blur(10px);
+  background: rgba(27, 94, 32, 0.2);
+  border: 1px solid rgba(46, 125, 50, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
 }
 
 .dark .frosted-glass {
-  background: rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(10, 10, 10, 0.5);
+  border: 1px solid rgba(46, 125, 50, 0.15);
 }
 
-/* Bordures et cadres décoratifs */
+/* Decorative borders and frames */
 .fancy-border {
   position: relative;
-  border: 1px solid rgba(76, 175, 80, 0.2);
+  border: 1px solid rgba(46, 125, 50, 0.2);
   border-radius: 0.5rem;
   overflow: hidden;
 }
@@ -81,7 +89,57 @@
   background: linear-gradient(to right, var(--color-fertiloop-green), var(--color-fertiloop-green-light));
 }
 
-/* Animacions */
+/* Animated corner decorations */
+.corner-decoration {
+  position: relative;
+}
+
+.corner-decoration::before,
+.corner-decoration::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-color: var(--color-fertiloop-green);
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+
+.corner-decoration::before {
+  top: 0;
+  left: 0;
+  border-top: 2px solid;
+  border-left: 2px solid;
+}
+
+.corner-decoration::after {
+  bottom: 0;
+  right: 0;
+  border-bottom: 2px solid;
+  border-right: 2px solid;
+}
+
+.corner-decoration:hover::before,
+.corner-decoration:hover::after {
+  width: 30px;
+  height: 30px;
+  opacity: 1;
+}
+
+/* Subtle gradient overlays */
+.gradient-overlay {
+  position: relative;
+}
+
+.gradient-overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(10, 61, 10, 0.1) 0%, rgba(30, 136, 229, 0.05) 100%);
+  pointer-events: none;
+}
+
+/* Animations */
 @keyframes float {
   0%, 100% {
     transform: translateY(0) rotate(0deg);
@@ -102,7 +160,58 @@
   }
 }
 
-/* Shine effect pour les cartes et boutons */
+/* Glowing effect for interactive elements */
+.glow-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.glow-effect::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(46, 125, 50, 0.4) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.glow-effect:hover::after {
+  opacity: 1;
+}
+
+/* Elegant card highlights */
+.card-highlight {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-highlight::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(46, 125, 50, 0.2),
+    transparent
+  );
+  transform: skewX(-25deg);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -50%;
+  }
+  100% {
+    left: 150%;
+  }
+}
+
+/* Shine effect for buttons and cards */
 .shine-effect {
   position: relative;
   overflow: hidden;
@@ -119,7 +228,7 @@
     to bottom right,
     rgba(255, 255, 255, 0) 0%,
     rgba(255, 255, 255, 0) 40%,
-    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0.2) 50%,
     rgba(255, 255, 255, 0) 60%,
     rgba(255, 255, 255, 0) 100%
   );
@@ -146,7 +255,7 @@
   }
 }
 
-/* Décoration pour les sections importantes */
+/* Section decorations */
 .section-decoration {
   position: relative;
 }
@@ -155,22 +264,17 @@
   content: "";
   position: absolute;
   top: -20px;
-  right: -20px;
+  left: -20px;
   width: 60px;
   height: 60px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%234CAF50' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M17.5 19a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z'/%3E%3Cpath d='M6 16.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z'/%3E%3Cpath d='M2 9.5a2.5 2.5 0 1 0 5 0 2.5 2.5 0 1 0-5 0z'/%3E%3Cpath d='M15 5.5a3.5 3.5 0 1 0-7 0 3.5 3.5 0 0 0 7 0z'/%3E%3Cpath d='M18.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%232E7D32' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M17.5 19a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z'/%3E%3Cpath d='M6 16.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z'/%3E%3Cpath d='M2 9.5a2.5 2.5 0 1 0 5 0 2.5 2.5 0 1 0-5 0z'/%3E%3Cpath d='M15 5.5a3.5 3.5 0 1 0-7 0 3.5 3.5 0 0 0 7 0z'/%3E%3Cpath d='M18.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  opacity: 0.1;
+  opacity: 0.15;
   transform: rotate(45deg);
   z-index: 0;
 }
 
-.dark .section-decoration::before {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%234CAF50' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M17.5 19a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z'/%3E%3Cpath d='M6 16.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z'/%3E%3Cpath d='M2 9.5a2.5 2.5 0 1 0 5 0 2.5 2.5 0 1 0-5 0z'/%3E%3Cpath d='M15 5.5a3.5 3.5 0 1 0-7 0 3.5 3.5 0 0 0 7 0z'/%3E%3Cpath d='M18.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z'/%3E%3C/svg%3E");
-  opacity: 0.15;
-}
-
-/* Effet de soulignement animé */
+/* Animated underline for links and headings */
 .animated-underline {
   position: relative;
   display: inline-block;
@@ -194,17 +298,17 @@
   transform-origin: bottom left;
 }
 
-/* Effet de halo pour les éléments mis en avant */
+/* Glowing elements */
 .glow-effect {
-  box-shadow: 0 0 15px var(--color-fertiloop-green-light);
+  box-shadow: 0 0 15px rgba(46, 125, 50, 0.3);
   transition: box-shadow 0.3s ease;
 }
 
 .glow-effect:hover {
-  box-shadow: 0 0 25px var(--color-fertiloop-green);
+  box-shadow: 0 0 25px rgba(46, 125, 50, 0.5);
 }
 
-/* Décoration pour les titres importants */
+/* Decorated titles */
 .decorated-title {
   position: relative;
   display: inline-block;
@@ -228,4 +332,30 @@
 .decorated-title::after {
   right: -30px;
   background: linear-gradient(to left, var(--color-fertiloop-green-light), transparent);
+}
+
+/* Text shadow effects for better contrast */
+.text-shadow {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.text-shadow-sm {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Particle effect containers */
+.particle-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  background-color: var(--color-fertiloop-green-light);
+  border-radius: 50%;
+  opacity: 0.2;
+  animation: float 8s infinite ease-in-out;
 }
