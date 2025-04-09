@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -46,6 +47,11 @@ const App = () => (
                   <Route path="/login" element={<Login />} />
                   <Route path="/access-denied" element={<AccessDenied />} />
                   <Route path="/services" element={<Services />} />
+                  <Route path="/mission" element={<Index />} /> {/* Redirige vers la section mission sur la page d'accueil */}
+                  <Route path="/produit" element={<Index />} /> {/* Redirige vers la section produit sur la page d'accueil */}
+                  <Route path="/faq" element={<Index />} /> {/* Redirige vers la section FAQ sur la page d'accueil */}
+                  <Route path="/contact" element={<Index />} /> {/* Redirige vers la section contact sur la page d'accueil */}
+                  <Route path="/get-started" element={<Register />} /> {/* Redirige vers la page d'inscription */}
                   
                   <Route path="/dashboard" element={
                     <ProtectedRoute>

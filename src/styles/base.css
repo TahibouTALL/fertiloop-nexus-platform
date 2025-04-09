@@ -6,12 +6,13 @@
 
   html {
     scroll-behavior: smooth;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   }
 
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
-    background-image: linear-gradient(to bottom right, hsl(var(--background)), hsl(230 20% 4%));
+    background-image: linear-gradient(to bottom right, hsl(var(--background)), hsl(230 20% 3%));
     background-attachment: fixed;
     overflow-x: hidden;
     -webkit-tap-highlight-color: transparent;
@@ -19,7 +20,7 @@
   }
 
   .dark body {
-    background-image: linear-gradient(to bottom right, hsl(230 15% 8%), hsl(230 20% 4%));
+    background-image: linear-gradient(to bottom right, hsl(230 15% 5%), hsl(230 20% 3%));
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -28,14 +29,19 @@
 
   h1 {
     @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl;
+    font-weight: 800;
+    letter-spacing: -0.02em;
   }
 
   h2 {
     @apply text-xl sm:text-2xl md:text-3xl;
+    font-weight: 700;
+    letter-spacing: -0.01em;
   }
 
   h3 {
     @apply text-lg sm:text-xl md:text-2xl;
+    font-weight: 600;
   }
   
   a {
@@ -86,5 +92,24 @@
   /* Selection styling */
   ::selection {
     @apply bg-primary/20 text-foreground;
+  }
+
+  /* Heading with decorative underlines */
+  .heading-decorated {
+    @apply relative inline-block;
+  }
+  
+  .heading-decorated::after {
+    content: '';
+    @apply absolute -bottom-2 left-0 h-1 w-1/4 bg-accent rounded-full;
+  }
+  
+  /* Text gradients */
+  .text-gradient-gold {
+    @apply bg-gradient-to-r from-accent to-amber-500 bg-clip-text text-transparent;
+  }
+  
+  .text-gradient-primary {
+    @apply bg-gradient-to-r from-primary to-orange-300 bg-clip-text text-transparent;
   }
 }

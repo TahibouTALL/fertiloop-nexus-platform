@@ -1,0 +1,183 @@
+
+/* Effets visuels et animations pour Fertiloop */
+
+/* Effet verre dépoli foncé */
+.glass-dark {
+  background: rgba(18, 18, 18, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* Effet verre dépoli avec accent orange */
+.glass-orange {
+  background: rgba(18, 18, 18, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 112, 67, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), 0 0 12px rgba(255, 112, 67, 0.1);
+}
+
+/* Effet verre dépoli avec accent doré */
+.glass-gold {
+  background: rgba(18, 18, 18, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), 0 0 12px rgba(255, 215, 0, 0.1);
+}
+
+/* Effet de brillance au survol */
+.shine-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.shine-effect::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 60%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(30deg);
+  transition: transform 0.7s;
+  opacity: 0;
+}
+
+.shine-effect:hover::after {
+  animation: shine 1.5s ease-out;
+}
+
+@keyframes shine {
+  0% {
+    transform: scale(0) rotate(30deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(3) rotate(30deg);
+    opacity: 0;
+  }
+}
+
+/* Boutons avec effet de survol élégant */
+.button-hover-effect {
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+.button-hover-effect:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 7px 15px rgba(0, 0, 0, 0.3), 0 0 10px rgba(255, 112, 67, 0.2);
+}
+
+/* Effet de pulsation subtil */
+.pulse-soft {
+  animation: pulseSoft 3s infinite ease-in-out;
+}
+
+@keyframes pulseSoft {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* Effet de flottement */
+.float {
+  animation: float 5s infinite ease-in-out;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Ombre text avec légère lueur */
+.text-shadow-glow {
+  text-shadow: 0 0 10px rgba(255, 112, 67, 0.3);
+}
+
+.text-shadow-gold {
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+/* Effet de bordure animée */
+.border-animate {
+  position: relative;
+}
+
+.border-animate::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border: 1px solid rgba(255, 112, 67, 0.3);
+  transition: all 0.3s ease;
+  opacity: 0;
+}
+
+.border-animate:hover::after {
+  top: -8px;
+  right: -8px;
+  bottom: -8px;
+  left: -8px;
+  opacity: 1;
+}
+
+/* Effet de transition fluide entre sections */
+.section-transition {
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.section-transition.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.section-transition.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Gradient overlay pour images */
+.gradient-overlay {
+  position: relative;
+}
+
+.gradient-overlay::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 30%, rgba(0,0,0,0) 70%);
+  z-index: 1;
+}
+
+/* Pour chaque type de contenu dans le gradient overlay */
+.gradient-overlay > * {
+  position: relative;
+  z-index: 2;
+}

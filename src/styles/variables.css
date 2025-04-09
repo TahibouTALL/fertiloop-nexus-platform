@@ -6,62 +6,62 @@
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
   --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.4);
 
-  /* Brand specific colors - darker, more elegant palette */
+  /* Fertiloop brand specific colors */
   --color-fertiloop-green: #2E7D32;
   --color-fertiloop-green-dark: #1B5E20;
   --color-fertiloop-green-light: rgba(46, 125, 50, 0.8);
-  --color-fertiloop-yellow: #FFC107;
-  --color-fertiloop-yellow-light: #FFF8E1;
-  --color-fertiloop-blue: #1E88E5;
-  --color-fertiloop-blue-dark: #0D47A1;
-  --color-fertiloop-gray: #121212;
-  --color-fertiloop-gray-dark: #0A0A0A;
+  --color-fertiloop-orange: #FF7043; /* Nouvel orange vif */
+  --color-fertiloop-gold: #FFD700;   /* Nouvel or */
+  --color-fertiloop-black: #121212;
+  --color-fertiloop-black-deep: #0A0A0A;
   
-  /* New elegant accent colors */
+  /* Accent colors */
+  --color-fertiloop-cream: #FFF8E1;    /* Blanc cassé/crème */
+  --color-fertiloop-gray-light: #B0BEC5; /* Gris clair pour sous-titres */
+  --color-fertiloop-red: #F44336;
+  --color-fertiloop-blue: #1E88E5;
   --color-fertiloop-purple: #673AB7;
-  --color-fertiloop-purple-dark: #4527A0;
   --color-fertiloop-teal: #009688;
   --color-fertiloop-amber: #FFB300;
-  --color-fertiloop-coral: #FF7043;
 }
 
 /* Dark theme as default */
 :root {
   /* Semantic colors for dark theme */
-  --background: 230 15% 7%;
-  --foreground: 210 20% 98%;
+  --background: 230 15% 5%;       /* Fond noir profond */
+  --foreground: 40 30% 98%;       /* Texte en blanc cassé */
   
   /* Card and container styles */
-  --card: 230 15% 10%;
-  --card-foreground: 210 20% 98%;
-  --popover: 230 15% 9%;
-  --popover-foreground: 210 20% 98%;
+  --card: 230 15% 8%;
+  --card-foreground: 40 30% 98%;
+  --popover: 230 15% 7%;
+  --popover-foreground: 40 30% 98%;
   
   /* Interactive colors */
-  --primary: 142 44% 30%;
-  --primary-foreground: 0 0% 98%;
+  --primary: 16 100% 63%;         /* Orange vif pour CTA */
+  --primary-foreground: 0 0% 100%;
   --secondary: 230 15% 15%;
-  --secondary-foreground: 210 20% 98%;
+  --secondary-foreground: 40 30% 98%;
   
   /* Supporting colors */
   --muted: 230 15% 15%;
-  --muted-foreground: 240 5% 75%;
-  --accent: 230 15% 15%;
-  --accent-foreground: 210 20% 98%;
+  --muted-foreground: 220 15% 75%;
+  --accent: 43 100% 50%;          /* Or pour accents */
+  --accent-foreground: 0 0% 0%;
   
   /* Functional colors */
   --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 210 20% 98%;
+  --destructive-foreground: 40 30% 98%;
   
   /* Form and border colors */
   --border: 230 15% 18%;
   --input: 230 15% 18%;
-  --ring: 142 44% 30%;
+  --ring: 16 100% 60%;            /* Anneau orange */
   
   /* Dark theme shadows with glow effects */
-  --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.3), 0 0 10px rgba(46, 125, 50, 0.1);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 15px rgba(46, 125, 50, 0.15);
-  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 20px rgba(46, 125, 50, 0.2);
+  --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.3), 0 0 10px rgba(255, 112, 67, 0.1);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 15px rgba(255, 112, 67, 0.15);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 112, 67, 0.2);
 }
 
 /* Media query for light theme preferences */
@@ -69,25 +69,25 @@
   :root {
     /* Semantic colors for light theme */
     --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+    --foreground: 230 10% 5%;
     
     /* Card and container styles */
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    --card-foreground: 230 10% 5%;
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
+    --popover-foreground: 230 10% 5%;
     
     /* Interactive colors */
-    --primary: 142 76% 36%;
-    --primary-foreground: 355 100% 100%;
+    --primary: 16 100% 50%;        /* Orange plus foncé pour le mode clair */
+    --primary-foreground: 0 0% 100%;
     --secondary: 240 4.8% 95.9%;
     --secondary-foreground: 240 5.9% 10%;
     
     /* Supporting colors */
     --muted: 240 4.8% 95.9%;
     --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
+    --accent: 43 100% 45%;         /* Or plus foncé pour le mode clair */
+    --accent-foreground: 0 0% 0%;
     
     /* Functional colors */
     --destructive: 0 84.2% 60.2%;
@@ -96,7 +96,7 @@
     /* Form and border colors */
     --border: 240 5.9% 90%;
     --input: 240 5.9% 90%;
-    --ring: 142 76% 36%;
+    --ring: 16 100% 50%;
     
     /* Shadows for light theme */
     --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -107,67 +107,43 @@
 
 /* Class-based theme override for when users manually select theme */
 .light-theme {
-  /* Semantic colors for light theme */
-  --background: 0 0% 100%;
-  --foreground: 240 10% 3.9%;
-  
-  /* Card and container styles */
-  --card: 0 0% 100%;
-  --card-foreground: 240 10% 3.9%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 240 10% 3.9%;
-  
-  /* Interactive colors */
-  --primary: 142 76% 36%;
-  --primary-foreground: 355 100% 100%;
-  --secondary: 240 4.8% 95.9%;
-  --secondary-foreground: 240 5.9% 10%;
-  
-  /* Supporting colors */
-  --muted: 240 4.8% 95.9%;
-  --muted-foreground: 240 3.8% 46.1%;
-  --accent: 240 4.8% 95.9%;
-  --accent-foreground: 240 5.9% 10%;
-  
-  /* Functional colors */
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 0 0% 98%;
-  
-  /* Form and border colors */
-  --border: 240 5.9% 90%;
-  --input: 240 5.9% 90%;
-  --ring: 142 76% 36%;
-  
-  /* Shadows for light theme */
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.15);
-  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15);
+  /* // ... keep existing code (light theme variables) */
 }
 
 .dark-theme {
-  /* Dark theme colors - explicit class */
-  --background: 230 15% 7%;
-  --foreground: 210 20% 98%;
-  --card: 230 15% 10%;
-  --card-foreground: 210 20% 98%;
-  --popover: 230 15% 9%;
-  --popover-foreground: 210 20% 98%;
-  --primary: 142 44% 30%;
-  --primary-foreground: 210 20% 98%;
+  /* Semantic colors for dark theme */
+  --background: 230 15% 5%;       /* Fond noir profond */
+  --foreground: 40 30% 98%;       /* Texte en blanc cassé */
+  
+  /* Card and container styles */
+  --card: 230 15% 8%;
+  --card-foreground: 40 30% 98%;
+  --popover: 230 15% 7%;
+  --popover-foreground: 40 30% 98%;
+  
+  /* Interactive colors */
+  --primary: 16 100% 63%;         /* Orange vif pour CTA */
+  --primary-foreground: 0 0% 100%;
   --secondary: 230 15% 15%;
-  --secondary-foreground: 210 20% 98%;
+  --secondary-foreground: 40 30% 98%;
+  
+  /* Supporting colors */
   --muted: 230 15% 15%;
-  --muted-foreground: 240 5% 75%;
-  --accent: 230 15% 15%;
-  --accent-foreground: 210 20% 98%;
+  --muted-foreground: 220 15% 75%;
+  --accent: 43 100% 50%;          /* Or pour accents */
+  --accent-foreground: 0 0% 0%;
+  
+  /* Functional colors */
   --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 210 20% 98%;
+  --destructive-foreground: 40 30% 98%;
+  
+  /* Form and border colors */
   --border: 230 15% 18%;
   --input: 230 15% 18%;
-  --ring: 142 44% 30%;
+  --ring: 16 100% 60%;            /* Anneau orange */
   
   /* Enhanced shadows with subtle glow */
-  --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.3), 0 0 10px rgba(46, 125, 50, 0.1);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 15px rgba(46, 125, 50, 0.15);
-  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 20px rgba(46, 125, 50, 0.2);
+  --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.3), 0 0 10px rgba(255, 112, 67, 0.1);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 15px rgba(255, 112, 67, 0.15);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 112, 67, 0.2);
 }

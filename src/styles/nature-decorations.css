@@ -1,0 +1,138 @@
+
+/* Décorations naturelles pour Fertiloop */
+
+/* Feuille dorée animée */
+.golden-leaf {
+  position: relative;
+}
+
+.golden-leaf::before {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FFD700' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z'/%3E%3Cpath d='M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  opacity: 0.6;
+  z-index: -1;
+  transform-origin: center;
+  animation: float 8s ease-in-out infinite;
+}
+
+/* Spirale verte */
+.green-spiral {
+  position: relative;
+  overflow: hidden;
+}
+
+.green-spiral::before {
+  content: '';
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232E7D32' stroke-width='1' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 22c5.5 0 10-4.5 10-10S17.5 2 12 2 2 6.5 2 12s4.5 10 10 10z'/%3E%3Cpath d='M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8z'/%3E%3Ccircle cx='12' cy='12' r='8'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  opacity: 0.15;
+  z-index: -1;
+  animation: rotate 20s linear infinite;
+}
+
+/* Baie orange */
+.orange-berry {
+  position: relative;
+}
+
+.orange-berry::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FF7043' stroke='%23FF7043' stroke-width='0.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  z-index: -1;
+  animation: pulse 4s ease-in-out infinite;
+}
+
+/* Fond avec motif subtil de feuilles */
+.leaf-pattern-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+.leaf-pattern-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 24 24' fill='none' stroke='%232E7D32' stroke-width='0.3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z'/%3E%3C/svg%3E");
+  opacity: 0.05;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Section avec accent doré */
+.gold-accent-section {
+  position: relative;
+  border-left: 3px solid transparent;
+  border-image: linear-gradient(to bottom, transparent, hsl(var(--accent)), transparent) 1;
+}
+
+/* Animations pour les décorations */
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(5deg); }
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+/* Effets d'illumination pour les sections */
+.glow-border {
+  position: relative;
+}
+
+.glow-border::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, hsl(var(--accent)), transparent);
+}
+
+/* Décoration de fond subtile */
+.bg-dots {
+  background-image: radial-gradient(rgba(255, 215, 0, 0.15) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.bg-lines {
+  background-image: linear-gradient(rgba(46, 125, 50, 0.05) 1px, transparent 1px);
+  background-size: 100% 8px;
+}
+
+/* Cartes avec accent naturel */
+.nature-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.nature-card::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 50px;
+  height: 50px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FFD700' stroke-width='0.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  opacity: 0.2;
+  transform: rotate(15deg);
+}
