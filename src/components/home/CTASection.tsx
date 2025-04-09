@@ -2,7 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { ArrowRight, Leaf, Sprout, Plant, TreeDeciduous } from "lucide-react";
+import { ArrowRight, Leaf, Sprout, Plane, TreeDeciduous } from "lucide-react";
 import { motion } from "framer-motion";
 
 const CTASection: React.FC = () => {
@@ -46,7 +46,7 @@ const CTASection: React.FC = () => {
           delay: 1
         }}
       >
-        <Plant size={28} />
+        <Plane size={28} />
       </motion.div>
       
       <motion.div 
