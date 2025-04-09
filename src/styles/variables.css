@@ -1,6 +1,12 @@
 
 :root {
-  /* Dark mode colors */
+  /* Base radii and shadows shared across themes */
+  --radius: 0.75rem;
+  --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.4);
+
+  /* Brand specific colors */
   --color-fertiloop-green: #4CAF50;
   --color-fertiloop-green-dark: #2E6D32;
   --color-fertiloop-green-light: rgba(76, 175, 80, 0.8);
@@ -10,8 +16,124 @@
   --color-fertiloop-blue-dark: #1EAEDB;
   --color-fertiloop-gray: #222222;
   --color-fertiloop-gray-dark: #161616;
+}
+
+/* Dark theme variables */
+:root {
+  /* Semantic colors for dark theme */
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
   
-  /* Dark mode specific theme tokens */
+  /* Card and container styles */
+  --card: 240 10% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --popover: 240 10% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  
+  /* Interactive colors */
+  --primary: 142 44% 40%;
+  --primary-foreground: 0 0% 98%;
+  --secondary: 240 3.7% 15.9%;
+  --secondary-foreground: 0 0% 98%;
+  
+  /* Supporting colors */
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+  --accent: 240 3.7% 15.9%;
+  --accent-foreground: 0 0% 98%;
+  
+  /* Functional colors */
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  
+  /* Form and border colors */
+  --border: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  --ring: 240 4.9% 83.9%;
+}
+
+/* Media query for light theme preferences */
+@media (prefers-color-scheme: light) {
+  :root {
+    /* Semantic colors for light theme */
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    
+    /* Card and container styles */
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    
+    /* Interactive colors */
+    --primary: 142 76% 36%;
+    --primary-foreground: 355 100% 100%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    
+    /* Supporting colors */
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    
+    /* Functional colors */
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    
+    /* Form and border colors */
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 142 76% 36%;
+    
+    /* Shadows for light theme */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.15);
+    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15);
+  }
+}
+
+/* Class-based theme override for when users manually select theme */
+.light-theme {
+  /* Semantic colors for light theme */
+  --background: 0 0% 100%;
+  --foreground: 240 10% 3.9%;
+  
+  /* Card and container styles */
+  --card: 0 0% 100%;
+  --card-foreground: 240 10% 3.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 240 10% 3.9%;
+  
+  /* Interactive colors */
+  --primary: 142 76% 36%;
+  --primary-foreground: 355 100% 100%;
+  --secondary: 240 4.8% 95.9%;
+  --secondary-foreground: 240 5.9% 10%;
+  
+  /* Supporting colors */
+  --muted: 240 4.8% 95.9%;
+  --muted-foreground: 240 3.8% 46.1%;
+  --accent: 240 4.8% 95.9%;
+  --accent-foreground: 240 5.9% 10%;
+  
+  /* Functional colors */
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  
+  /* Form and border colors */
+  --border: 240 5.9% 90%;
+  --input: 240 5.9% 90%;
+  --ring: 142 76% 36%;
+  
+  /* Shadows for light theme */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.dark-theme {
+  /* Dark theme colors - explicit class for when the user selects dark mode regardless of system preferences */
   --background: 240 10% 3.9%;
   --foreground: 0 0% 98%;
   --card: 240 10% 3.9%;
@@ -31,8 +153,8 @@
   --border: 240 3.7% 15.9%;
   --input: 240 3.7% 15.9%;
   --ring: 240 4.9% 83.9%;
-
-  /* Dark mode shadows */
+  
+  /* Dark theme shadows remain the same as root */
   --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.2);
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
   --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.4);
