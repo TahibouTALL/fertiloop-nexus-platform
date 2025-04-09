@@ -1,8 +1,7 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, Leaf, Droplets, Recycle, Plant } from "lucide-react";
+import { ArrowRight, Leaf, Droplets, Recycle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const ModernHero: React.FC = () => {
@@ -39,7 +38,7 @@ const ModernHero: React.FC = () => {
           ease: "easeInOut"
         }}
       >
-        <Plant size={100} />
+        <Leaf size={100} />
       </motion.div>
       
       <div className="container mx-auto px-4">
