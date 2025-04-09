@@ -1,0 +1,231 @@
+
+/* Styles de décorations pour l'application Fertiloop */
+
+/* Éléments de décoration flottants */
+.floating-decoration {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.6;
+  filter: blur(1px);
+  transition: all 0.5s ease;
+}
+
+.floating-decoration-leaf {
+  animation: float 8s ease-in-out infinite;
+}
+
+.floating-decoration-circle {
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
+  animation: pulse 6s ease-in-out infinite;
+}
+
+.floating-decoration-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-fertiloop-green-light);
+  animation: pulse 4s ease-in-out infinite;
+}
+
+/* Éléments décoratifs de fond */
+.bg-decoration {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  opacity: 0.3;
+}
+
+.bg-pattern-grid {
+  background-image: linear-gradient(to right, var(--color-fertiloop-green-light) 1px, transparent 1px),
+                    linear-gradient(to bottom, var(--color-fertiloop-green-light) 1px, transparent 1px);
+  background-size: 24px 24px;
+  opacity: 0.1;
+}
+
+.bg-pattern-dots {
+  background-image: radial-gradient(var(--color-fertiloop-green-light) 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.1;
+}
+
+.frosted-glass {
+  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+}
+
+.dark .frosted-glass {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Bordures et cadres décoratifs */
+.fancy-border {
+  position: relative;
+  border: 1px solid rgba(76, 175, 80, 0.2);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.fancy-border::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(to right, var(--color-fertiloop-green), var(--color-fertiloop-green-light));
+}
+
+/* Animacions */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.8;
+  }
+}
+
+/* Shine effect pour les cartes et boutons */
+.shine-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.shine-effect::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 60%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(30deg);
+  transition: all 0.6s;
+  opacity: 0;
+}
+
+.shine-effect:hover::after {
+  animation: shine 1.5s ease-out;
+}
+
+@keyframes shine {
+  0% {
+    transform: scale(0) rotate(30deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(3) rotate(30deg);
+    opacity: 0;
+  }
+}
+
+/* Décoration pour les sections importantes */
+.section-decoration {
+  position: relative;
+}
+
+.section-decoration::before {
+  content: "";
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 60px;
+  height: 60px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%234CAF50' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M17.5 19a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z'/%3E%3Cpath d='M6 16.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z'/%3E%3Cpath d='M2 9.5a2.5 2.5 0 1 0 5 0 2.5 2.5 0 1 0-5 0z'/%3E%3Cpath d='M15 5.5a3.5 3.5 0 1 0-7 0 3.5 3.5 0 0 0 7 0z'/%3E%3Cpath d='M18.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  opacity: 0.1;
+  transform: rotate(45deg);
+  z-index: 0;
+}
+
+.dark .section-decoration::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%234CAF50' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M17.5 19a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z'/%3E%3Cpath d='M6 16.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z'/%3E%3Cpath d='M2 9.5a2.5 2.5 0 1 0 5 0 2.5 2.5 0 1 0-5 0z'/%3E%3Cpath d='M15 5.5a3.5 3.5 0 1 0-7 0 3.5 3.5 0 0 0 7 0z'/%3E%3Cpath d='M18.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z'/%3E%3C/svg%3E");
+  opacity: 0.15;
+}
+
+/* Effet de soulignement animé */
+.animated-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.animated-underline::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: var(--color-fertiloop-green);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-out;
+}
+
+.animated-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* Effet de halo pour les éléments mis en avant */
+.glow-effect {
+  box-shadow: 0 0 15px var(--color-fertiloop-green-light);
+  transition: box-shadow 0.3s ease;
+}
+
+.glow-effect:hover {
+  box-shadow: 0 0 25px var(--color-fertiloop-green);
+}
+
+/* Décoration pour les titres importants */
+.decorated-title {
+  position: relative;
+  display: inline-block;
+  padding: 0 15px;
+}
+
+.decorated-title::before,
+.decorated-title::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 30px;
+  height: 2px;
+  background: linear-gradient(to right, var(--color-fertiloop-green-light), transparent);
+}
+
+.decorated-title::before {
+  left: -30px;
+}
+
+.decorated-title::after {
+  right: -30px;
+  background: linear-gradient(to left, var(--color-fertiloop-green-light), transparent);
+}
